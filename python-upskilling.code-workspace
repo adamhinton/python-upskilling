@@ -10,10 +10,19 @@
 		"editor.codeActionsOnSave": {
 			"source.organizeImports": "always"
 		},
-		"python.formatting.provider": "black",
 		"python.linting.enabled": true,
 		"python.linting.mypyEnabled": true,
+		"python.linting.mypyPath": "/Users/a/Documents/personalprojects/python-upskilling/.venv/bin/mypy",
 		"python.linting.ruffEnabled": true,
-		"python.testing.pytestEnabled": true
+		"python.testing.pytestEnabled": true,
+		"[python]": {
+			"editor.defaultFormatter": "ms-python.black-formatter"
+		},
+		"runOnSave.commands": [
+			{
+				"match": ".*\\.py$",
+				"cmd": "python ${file}"
+			}
+		]
 	}
 }
