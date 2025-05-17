@@ -4,6 +4,8 @@ pycache/
 .mypy_cache/
 .pytest_cache/
 
+copilot-instructions.md
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
