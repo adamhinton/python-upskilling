@@ -14,7 +14,7 @@ def get_letter_number (letter: str) -> int:
 
 def group_anagrams(words: List[str]) -> List[List[str]]:
     solution = []
-    seen: Dict[Tuple, List[str]] = {}
+    seen: Dict[Tuple[int], List[str]] = {}
 
     for word in words:
         # 26 0's
@@ -30,10 +30,8 @@ def group_anagrams(words: List[str]) -> List[List[str]]:
         else:
             seen[key] = [word]
 
-    for arr in seen:
-        solution.append(seen[arr])
-
-    return solution
+    return list(seen.values())
+    
 
 print(group_anagrams(["tsar", "rat", "tar", "star", "tars", "cheese"]))
 
