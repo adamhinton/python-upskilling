@@ -1,41 +1,30 @@
 from typing import List
 
-def max_profit(prices: List[int]) -> int:
-    buy_pointer = 0
-    sell_pointer = 1
+def max_profit (prices: List[int]) -> int:
+    min_buying_price = prices[0]
+    max_profit  = prices[1] - min_buying_price
 
-    lowest_buy_price = prices[0]
-    highest_sell_price = prices[1]
+    # Start at second item in prices bc you can't sell at the first price
+    for price in prices[1::]:
 
-    prices_len = len(prices)
+        current_potential_profit = price - min_buying_price
 
-    # Don't think I need to include check on buy_pointer here
-    while sell_pointer < prices_len:
-        current_buy_price = prices[buy_pointer]
-        current_sell_price = prices[sell_pointer]
+        if current_potential_profit > max_profit:
+            max_profit = current_potential_profit
 
-        # Sell_pointer stuff
-        if current_sell_price > highest_sell_price:
-            highest_sell_price = current_sell_price
-        
-        # I think I can increment it on every loop? Not doing it this time
-        # Right now this doesn't change sell_pointer if it's currently the best oen
-        elif sell_pointer < prices_len:
-            sell_pointer += 1
-        
 
-        if current_buy_price < lowest_buy_price:
-            lowest_buy_price = current_buy_price
-        
-        # Doesn't change buy_pointer if it's currently the best one
-        elif buy_pointer < (sell_pointer - 1):
-            buy_pointer += 1
+        if price < min_buying_price:
+            min_buying_price = price
 
-    return highest_sell_price - lowest_buy_price
 
-print(max_profit([3, 10, 8, 4])) # 7
+    return max_profit
+
+# print(max_profit([3, 10, 8, 4])) # 7
+print(max_profit([10, 7, 5, 4, 1])) # -1
 
 # PLAN:
+
+# Note, this plan was totally wrong. But I'm leaving it up for posterity.
 
 # Two pointers starting at index 0 and 1
 # buy can never be equal to or greater than sell
