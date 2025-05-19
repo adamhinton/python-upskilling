@@ -1,73 +1,35 @@
 from typing import List
 
-def max_profit (prices: List[int]) -> int:
+def max_profit(prices: List[int]) -> int:
     min_buying_price = prices[0]
-    max_profit  = prices[1] - min_buying_price
 
-    # Start at second item in prices bc you can't sell at the first price
-    for price in prices[1::]:
+    highest_possible_profit = prices[1] - min_buying_price
 
+    # Start at prices[1] bc we can't sell for the price at index 0
+    for price in prices[1:]:
         current_potential_profit = price - min_buying_price
 
-        if current_potential_profit > max_profit:
-            max_profit = current_potential_profit
-
+        if current_potential_profit > highest_possible_profit:
+            highest_possible_profit = current_potential_profit
 
         if price < min_buying_price:
             min_buying_price = price
 
+    return highest_possible_profit
 
-    return max_profit
-
-# print(max_profit([3, 10, 8, 4])) # 7
-print(max_profit([10, 7, 5, 4, 1])) # -1
+print(max_profit([3, 10, 8, 4])) # 7
 
 # PLAN:
 
-# Note, this plan was totally wrong. But I'm leaving it up for posterity.
+# min_buying_price = prices[0]
+# highest_possible_profit = prices[1] - min_buying_price
 
-# Two pointers starting at index 0 and 1
-# buy can never be equal to or greater than sell
-# buy_pointer = 0
-# sell_pointer = 1
+# Start at prices[1] because you can't sell at prices[0]
+# for price in prices[1::]:
 
-# lowest_buy_price = 0
-# highest_sell_price = 0
+    # current_potential_profit is price - min_buying_price
+    # If that's greater than highest_possible_profit, then set highest_possible_profit = current_potential_profit
 
-# prices_len = len(prices)
+    # if price is lwoer than min_buying_price, min_buying_price = price
 
-# while sell_pointer < prices_len AND buy_pointer < (prices_len - 1):
-    # current_buy_price = prices[buy_pointer]
-    # current_sell_price = prices[sell_pointer]
-
-    # if current_sell_price > highest_sell_price:
-        # highest_sell_price = current_sell_price
-    # Doesn't change sell_pointer if it's currently the best one
-    # elif sell_pointer < prices_len:
-        # sell_pointer++
-
-    # if current_buy_price < lowest_buy_price:
-        # lowest_buy_price = current_buy_price
-    # Doesn't change buy_pointer if it's currently the best one
-    # elif buy_pointer < (sell_pointer < 1):
-        # buy_pointer++
-
-# return highest_sell_price - lowest_buy_price
-
-
-
-# Description:
-# You're a buyer/seller and your buisness is at stake... You need to make profit... Or at least, you need to lose the least amount of money!
-# Knowing a list of prices for buy/sell operations, you need to pick two of them. Buy/sell market is evolving across time and the list represent this evolution. First, you need to buy one item, then sell it later. Find the best profit you can do.
-
-# Example:
-# Given an array of prices [3, 10, 8, 4], the best profit you could make would be 7 because you buy at 3 first, then sell at 10.
-
-# Input:
-# A list of prices (integers), of length 2 or more.
-
-# Output:
-# The result of the best buy/sell operation, as an integer.
-
-# Note:
-# Be aware you'll face lists with several thousands of elements, so think about performance.
+# return highest_possible_proit
