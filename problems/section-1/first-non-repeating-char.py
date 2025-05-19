@@ -12,3 +12,22 @@ def first_non_repeating_letter(input: str) -> str:
     # Dummy placeholder
     return ""
 
+
+# PLAN
+# note: Need to account for capitalization
+
+    # note, don't need to explicitly check for zero-length input string
+
+    # frequency_counter: Dict[str, int]= {}
+
+    # for char in input:
+        # if char is in frequency_counter, frequency_counter[char] += 1
+        # else, frequency_counter[char] = 1
+
+    # Note, dicts preserve insertion order now
+    # for key, value in loop over frequency_counter.keys():
+        # If value = 1 and key.upper() isn't in frequency_counter: 
+            #  return key
+
+    # No non-repeating characters
+    # return ""
