@@ -13,6 +13,14 @@ def first_non_repeating_letter(input: str) -> str:
     return ""
 
 
+print(first_non_repeating_letter('a')) # 'a'
+print(first_non_repeating_letter('moonmen')) # 'e'
+print(first_non_repeating_letter('')) # ''
+print(first_non_repeating_letter('abba')) # ''
+print(first_non_repeating_letter('~><#~><')) # '#'
+print(first_non_repeating_letter('hello world, eh?')) # 'w'
+print(first_non_repeating_letter('sTreSS')) # 'T'
+
 # PLAN
 # note: Need to account for capitalization
 
