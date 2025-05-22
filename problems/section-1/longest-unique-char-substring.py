@@ -7,28 +7,25 @@
 from typing import Dict
 
 def longest_substring (s: str) -> int:
+
     str_length = len(s)
-    if str_length == 1 or str_length == 0:
+    if str_length <= 1:
         return str_length
-    
-    # Dupe_check has a char key and the char's last-seen index as a value
+
     dupe_check: Dict[str, int] = {}
     longest_substring_length = 1
 
-    # We know len(s) is at least 2
     left_index = 0
 
     for right_index in range(str_length):
         right_char = s[right_index]
 
-        # This only checks for dupes within the range of the current subarray
+        # This only cares about dupes in the current subarray
         if right_char in dupe_check and dupe_check[right_char] >= left_index:
             left_index = dupe_check[right_char] + 1
 
         dupe_check[right_char] = right_index
-
-        longest_substring_length = max(right_index - left_index + 1, longest_substring_length)
-
+        longest_substring_length = max(longest_substring_length, right_index - left_index + 1)
 
     return longest_substring_length
 
