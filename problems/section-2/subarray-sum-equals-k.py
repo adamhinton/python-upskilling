@@ -8,7 +8,7 @@ from typing import List, Dict
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
         total_subarrays_solution = 0
-        prefix_sums_seen: Dict[int, int] = {}
+        prefix_sums_seen: Dict[int, int] = {0:1}
         
         current_sum = 0
 
@@ -16,15 +16,18 @@ class Solution:
             current_sum += num
             needed_sum =current_sum - k
 
+            total_subarrays_solution += prefix_sums_seen.get(needed_sum, 0)
+
+
             prefix_sums_seen[current_sum] = prefix_sums_seen.get(current_sum, 0) + 1
 
-            total_subarrays_solution += prefix_sums_seen.get(needed_sum, 0)
 
         return total_subarrays_solution
     
 
-print(Solution().subarraySum(nums = [1,1,1], k = 2)) # 2
-print(Solution().subarraySum(nums = [1,2,3], k = 3)) # 2
+# print(Solution().subarraySum(nums = [1,1,1], k = 2)) # 2
+# print(Solution().subarraySum(nums = [1,2,3], k = 3)) # 2
+print(Solution().subarraySum(nums = [1], k = 0)) # 2
 
 # THOUGHTS before planning:
 # -Should be O(n)
