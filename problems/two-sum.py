@@ -11,22 +11,21 @@
 
 # You can return the answer in any order.
 
-from typing import List, Tuple
+from typing import List, Tuple, Dict
 
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> Tuple[int, int]:
         seen_numbers: Dict[int, int] = {}
 
         for i, num in enumerate(nums):
-            needed_num = target - num
+            complement = target - num
 
-            if needed_num in seen_numbers:
-                return (i, seen_numbers[needed_num])
+            if complement in seen_numbers:
+                return (i, seen_numbers[complement])
             
             seen_numbers[num] = i
 
-        return (0, 0)
-    
+        raise ValueError("No solution found")    
 
 # PLAN
 
@@ -34,7 +33,7 @@ class Solution:
 # seen_numbers: Dict[int, int] = {}
 
 # for i, num in enumerate(nums):
-    # needed_num is target - num
-    # if seen_numbers has needed num, return (i, seen_numbers[needed_num])
+    # complement is target - num
+    # if seen_numbers has needed num, return (i, seen_numbers[complement])
 
     # seen_numbers[num] = i
