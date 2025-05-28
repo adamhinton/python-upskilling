@@ -18,7 +18,6 @@ class Solution:
 
             total_subarrays_solution += prefix_sums_seen.get(needed_sum, 0)
 
-
             prefix_sums_seen[current_sum] = prefix_sums_seen.get(current_sum, 0) + 1
 
 
