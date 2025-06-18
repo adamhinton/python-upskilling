@@ -11,4 +11,23 @@
 # Implement a function to find the first bad version. 
 # You should minimize the number of calls to the API.
 
+# Dummy
+def isBadVersion(version: int) -> bool:
+    return True
  
+class Solution:
+    def firstBadVersion(self, n: int) -> int:
+        low = 1
+        high = n
+
+        while low <= high:
+            mid = (low + high) // 2
+
+            if isBadVersion(mid) == False:
+                low = mid + 1
+            
+            elif isBadVersion(mid) == True:
+                high = mid - 1
+
+        return low
+        
