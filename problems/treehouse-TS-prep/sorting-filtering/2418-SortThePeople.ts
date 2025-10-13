@@ -1,6 +1,7 @@
 // Notes after finishing:
 // I was surprised that the best solutions involved three loops; 3n log n which simplifies to n log n
-// That was also my solution. I figured someone would come up with some spooky action at a distance to cut out one or even two of those loops.
+// That was also my solution. I figured someone would come up with some spooky action at a distance to cut 
+    // out one or even two of those loops.
 
 // https://leetcode.com/problems/sort-the-people/description/
 
