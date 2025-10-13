@@ -20,11 +20,19 @@ type Restaurant = [id: number, rating: number, veganFriendly: 0 | 1, price: numb
 // Plan:
 // Write isValidRestaurant helper function for filtering
 
+// Filter restaurants array to get rid of invalid restaurants
+// Sort that array:
+    // First by rating
+    // Then by id if ratings are equal
 
-const isValidRestaurant = (restaurant: Restaurant, shouldBeVeganFriendly: boolean, maxPrice: number, maxDistance: number): boolean => {
-        const [id, rating, veganFriendly, price, distance] = restaurant;
+// Make an array of the restaurant ids in order
+// Return array of ids
 
-        const isValidVeganFriendly = shouldBeVeganFriendly === false || (veganFriendly === 1)
+
+const isValidRestaurant = (restaurant: Restaurant, shouldBeVeganFriendly: 0 | 1, maxPrice: number, maxDistance: number): boolean => {
+        const [, , veganFriendly, price, distance] = restaurant;
+
+        const isValidVeganFriendly = shouldBeVeganFriendly === 0 || (veganFriendly === 1)
         const isValidPrice = price <= maxPrice
         const isValidDistance = distance <= maxDistance
 
