@@ -31,7 +31,10 @@ const sortPeople = (names: string[], heights: number[]):  string[] =>{
         return {name: personName, height: heights[i]}
     })
     .sort((p1, p2) =>{
-        return p1.height + p2.height
+        const p1Height = p1.height
+        const p2Height = p2.height
+
+        return p2Height - p1Height
     })
 
     for( const person of people) {

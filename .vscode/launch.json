@@ -5,6 +5,20 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+			"name": "TypeScript: Current File",
+			"type": "node",
+			"request": "launch",
+			"program": "${file}",
+			"runtimeArgs": ["-r", "ts-node/register"],
+			"env": {
+				"TS_NODE_FILES": "true"
+			},
+			"skipFiles": [
+				"<node_internals>/**"
+			],
+			"console": "integratedTerminal"
+		},
+		{
 			"name": "Attach",
 			"port": 9229,
 			"request": "attach",
