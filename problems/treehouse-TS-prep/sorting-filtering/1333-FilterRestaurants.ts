@@ -28,6 +28,31 @@ type Restaurant = [id: number, rating: number, veganFriendly: 0 | 1, price: numb
 // Make an array of the restaurant ids in order
 // Return array of ids
 
+function filterRestaurants(restaurants: Restaurant[], veganFriendly: 0 | 1, maxPrice: number, maxDistance: number): number[] {
+    
+    const validSortedRestaurantIDs = restaurants.filter((restaurant) => isValidRestaurant(restaurant, veganFriendly, maxPrice, maxDistance))
+    .sort((restA, restB) =>{
+        const restAID = restA[0]
+        const restBID = restB[0]
+
+        const restARating = restA[1]
+        const restBRating = restB[1]
+
+        if (restARating !== restBRating) {
+            // Descending order by rating
+            return restBRating - restARating
+        }
+
+        else{
+            // Descending order by id
+           return restBID - restAID 
+        }
+    })
+    .map(restaurant => restaurant[0])
+
+    return validSortedRestaurantIDs
+};
+
 
 const isValidRestaurant = (restaurant: Restaurant, shouldBeVeganFriendly: 0 | 1, maxPrice: number, maxDistance: number): boolean => {
         const [, , veganFriendly, price, distance] = restaurant;
@@ -38,3 +63,7 @@ const isValidRestaurant = (restaurant: Restaurant, shouldBeVeganFriendly: 0 | 1,
 
         return isValidVeganFriendly && isValidPrice && isValidDistance
     }
+
+
+// console.log(filterRestaurants([[1,4,1,40,10],[2,8,0,50,5],[3,8,1,30,4],[4,10,0,10,3],[5,1,1,15,1]], 1, 50, 10)) // 
+console.log(filterRestaurants([[1,4,1,40,10],[2,8,0,50,5],[3,8,1,30,4],[4,10,0,10,3],[5,1,1,15,1]], 1, 50, 10)) // [3, 1, 5]
