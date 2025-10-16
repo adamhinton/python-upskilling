@@ -16,6 +16,18 @@
     // numIndexes[num] = i
 
 function twoSum(nums: number[], target: number): [number, number] {
-    
-    return [-1, -1]
+    // {number: index}
+    const numIndices: Record<number, number> = {}
+
+    nums.forEach((num, i) =>{
+        const needed = target - num
+        if(numIndices[needed]){
+            return [i, numIndices[needed]]
+        }
+
+        numIndices[num] = i
+    })
+
+    // Should never happen wif we do it right, always exactly one solution
+    throw Error("Didn't find solution")
 };
