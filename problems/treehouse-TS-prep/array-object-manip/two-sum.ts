@@ -19,15 +19,19 @@ function twoSum(nums: number[], target: number): [number, number] {
     // {number: index}
     const numIndices: Record<number, number> = {}
 
-    nums.forEach((num, i) =>{
+    for(let i = 0; i< nums.length; i++){
+        const num = nums[i]
         const needed = target - num
-        if(numIndices[needed]){
+        if(needed in numIndices){
             return [i, numIndices[needed]]
         }
 
         numIndices[num] = i
-    })
+    }
 
-    // Should never happen wif we do it right, always exactly one solution
+    // Should never happen if we do it right, always exactly one solution
     throw Error("Didn't find solution")
 };
+
+console.log(twoSum([2,7,11,15], 9)) // [0, 1]
+// console.log(twoSum([3,2,4], 6)) // [1, 2]
