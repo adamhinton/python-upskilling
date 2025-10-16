@@ -44,7 +44,7 @@ function merge(nums1: number[], m: number, nums2: number[], n: number): void {
     let i = m - 1
     let j = n - 1
 
-    while(i > 0 && j > 0){
+    while(i >= 0 && j >= 0){
         const nums1Num = nums1[i]
         const nums2Num = nums2[j]
 
@@ -60,13 +60,13 @@ function merge(nums1: number[], m: number, nums2: number[], n: number): void {
         }
     }
 
-    while(j > 0){
+    while(j >= 0){
         nums1[last] = nums2[j]
         last--
         j--
     }
 
-    console.log("nums1:", nums1)
+    // console.log("nums1:", nums1)
 };
 
 console.log(merge([1,2,3,0,0,0], 3, [2, 5, 6], 3)) // [1,2,2,3,5,6]
