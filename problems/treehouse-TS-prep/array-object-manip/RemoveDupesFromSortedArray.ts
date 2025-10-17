@@ -67,7 +67,7 @@ function removeDuplicates(nums: number[]): number {
 
     }
 
-    console.log("nums", nums)
+    // console.log("nums", nums)
 
     return left + 1
 };
