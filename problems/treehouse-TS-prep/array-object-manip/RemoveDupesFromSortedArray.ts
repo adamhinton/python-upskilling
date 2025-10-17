@@ -16,7 +16,56 @@
 // Return k.
 
 // PLAN
+// O(n) I believe
+
+// Need:
+// Two pointers
+// Just one pass I think
+// Don't think I need a hash table
+
+// If length is 0 or 1 return length
+
+// let left, right = 0, 1
+
+// while right < nums.length:
+// numLeft, numRight = nums[left], nums[right]
+// if numLeft === numRight, right++
+// if numRight > numLeft:
+    // nums[left + 1] = numRight
+    // left ++?
+    // right++?
+
+// return left + 1
+
+
 
 function removeDuplicates(nums: number[]): number {
-    
+    // if(nums.length < 2){
+    //     return nums.length
+    // }
+
+    let left = 0
+    let right = 1
+
+    while (right < nums.length){
+        const numLeft = nums[left]
+        const numRight = nums[right]
+        
+        if(numRight === numLeft){
+            right++
+        }
+
+        else if (numRight > numLeft){
+            nums[left + 1] = numRight
+            left++
+            right++
+        }
+
+        else{
+            throw Error("Left is greater than right. How did you even do that?")
+        }
+
+    }
+
+    return left + 1
 };
