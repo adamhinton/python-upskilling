@@ -40,9 +40,9 @@
 
 
 function removeDuplicates(nums: number[]): number {
-    // if(nums.length < 2){
-    //     return nums.length
-    // }
+    if(nums.length < 2){
+        return nums.length
+    }
 
     let left = 0
     let right = 1
@@ -60,14 +60,7 @@ function removeDuplicates(nums: number[]): number {
             left++
             right++
         }
-
-        else{
-            throw Error("Left is greater than right. How did you even do that?")
-        }
-
     }
-
-    // console.log("nums", nums)
 
     return left + 1
 };
