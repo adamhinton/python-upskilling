@@ -34,8 +34,17 @@ function subdomainVisits(cpdomains: string[]): string[] {
     const counts: Record<string, number> = {} // domain: numVisits, like >>> {domain.google.com: 23424}
     const solution: string[] = []
 
-    
+    for (const cpDomain of cpdomains){
+        const splitCPD = cpDomain.split(" ")
+
+        const numVisits = Number(splitCPD[0])
+        
+        const domain = splitCPD[1]
+    }
 
 
     return solution
 };
+
+
+console.log(subdomainVisits(["9001 discuss.leetcode.com"]))
