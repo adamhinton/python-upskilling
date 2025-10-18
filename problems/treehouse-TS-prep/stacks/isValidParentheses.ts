@@ -48,7 +48,7 @@ function isValid(s: string): boolean {
                 return false
             }
         } 
-        else{
+        else{ // opening paren
             parenStack.push(paren)
         }
 
