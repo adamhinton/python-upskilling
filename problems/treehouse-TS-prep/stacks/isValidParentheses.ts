@@ -48,10 +48,13 @@ function isValid(s: string): boolean {
                 return false
             }
         } 
-
-        parenStack.push(paren)
+        else{
+            parenStack.push(paren)
+        }
 
     }
 
     return parenStack.length === 0
 };
+
+console.log(isValid("()"))
