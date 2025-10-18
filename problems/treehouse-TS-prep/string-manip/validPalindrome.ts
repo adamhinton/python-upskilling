@@ -37,4 +37,34 @@
 
 function isPalindrome(s: string): boolean {
     
+    let left = 0
+    let right = s.length -1
+
+    while(left < right){
+        const leftChar = s[left]
+        const rightChar = s[right]
+
+        if(!isAlphanumeric(leftChar)){
+            left++
+            continue
+        }
+        if(!isAlphanumeric(rightChar)){
+            right--
+            continue
+        }
+
+        if(leftChar.toLowerCase() !== rightChar.toLowerCase()){
+            return false
+        }
+        left++
+        right--
+    }
+
+    return true
 };
+
+function isAlphanumeric(char: string): boolean {
+  // Checks if the string contains only a single letter (a-z, A-Z) or digit (0-9).
+  // The caret (^) and dollar sign ($) ensure the entire string is matched.
+  return /^[a-zA-Z0-9]$/.test(char);
+}
