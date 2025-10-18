@@ -16,3 +16,14 @@ function maxSlidingWindow(nums: number[], k: number): number[] {
 };
 
 // PLAN
+// const solution = []
+
+// const initialArr = nums from 0 to k
+// let currentMax = Math.max(initialArr). --- could probably do this in one operation
+
+// let left = k
+// let right = k + k
+
+
+
+// return solution
