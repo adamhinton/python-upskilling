@@ -43,11 +43,15 @@ function isValid(s: string): boolean {
 
     for (const paren of s){
         if(pairs.has(paren)){ // it's a closing paren
-            
+            const top = parenStack.pop()
+            if(top !== pairs.get(paren)){
+                return false
+            }
         } 
+
+        parenStack.push(paren)
 
     }
 
-
-    return true
+    return parenStack.length === 0
 };
