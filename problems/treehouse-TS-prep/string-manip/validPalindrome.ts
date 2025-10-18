@@ -41,19 +41,20 @@ function isPalindrome(s: string): boolean {
     let right = s.length -1
 
     while(left < right){
-        const leftChar = s[left]
-        const rightChar = s[right]
+        // const leftChar = s[left]
+        // const rightChar = s[right]
 
-        if(!isAlphanumeric(leftChar)){
+        while(!isAlphanumeric(s[left]) && left<right){
             left++
-            continue
-        }
-        if(!isAlphanumeric(rightChar)){
-            right--
-            continue
         }
 
-        if(leftChar.toLowerCase() !== rightChar.toLowerCase()){
+        while(!isAlphanumeric(s[right]) && left<right){
+            right--
+        }
+
+        // if (left > right) return false
+
+        while(s[left].toLowerCase() !== s[right].toLowerCase()){
             return false
         }
         left++
@@ -68,3 +69,5 @@ function isAlphanumeric(char: string): boolean {
   // The caret (^) and dollar sign ($) ensure the entire string is matched.
   return /^[a-zA-Z0-9]$/.test(char);
 }
+
+console.log(isPalindrome("A man, a plan, a canal: Panama"))
