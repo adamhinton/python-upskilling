@@ -8,8 +8,28 @@
 // Need: hash tables, accumulators strings, backwards for loops
 
 // const counts : Record<string, number> >>> {domain.google.com : 80000}
+// const solution: string[] = []
 
-// for loop of cpdomains:
+
+// for cpdomain in cpdomains:
+// Split string by " " in to count and domain
+// const visitCount = whatever, const domain = whatever
+
+// const accumStr = ""
+
+// for loop BACKWARDS through chars in domain:{
+// if char === . , stop
+// accumStr += domain[i to whatever]
+// counts[accumStr] initialize with visitCount or add visitCount
+// }
+
+// For item in counts:
+// construct string of count and domain
+// add that string to solution
+// Is there a more efficient way to do this? I don't think so.
+
+
+
 
 
 
