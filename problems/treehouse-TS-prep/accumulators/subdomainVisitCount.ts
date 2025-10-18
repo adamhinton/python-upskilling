@@ -29,11 +29,13 @@
 // Is there a more efficient way to do this? I don't think so.
 
 
-
-
-
-
-
 function subdomainVisits(cpdomains: string[]): string[] {
-    return []
+
+    const counts: Record<string, number> = {} // domain: numVisits, like >>> {domain.google.com: 23424}
+    const solution: string[] = []
+
+    
+
+
+    return solution
 };
