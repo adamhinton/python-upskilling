@@ -40,10 +40,19 @@ function subdomainVisits(cpdomains: string[]): string[] {
         const numVisits = Number(splitCPD[0])
         
         const domain = splitCPD[1]
+
+        const parts = domain.split(".")
+
+        for (let i = 0; i< parts.length; i++){
+            const sub = parts.slice(i).join(".")
+            counts[sub] = (counts[sub] ?? 0) + numVisits
+        }
     }
 
 
-    return solution
+    return Object.entries(counts).map((domain) =>{
+        return `${domain[1]} ${domain[0]}`
+    })
 };
 
 
