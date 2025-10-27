@@ -12,13 +12,34 @@
 
 # Given n, calculate F(n).
 
+# 0 <= n <= 30
+
+
 class Solution:
     def fib(self, n: int) -> int:
+
+        if n==0 or n==1: return n
         
         return 0
     
 
-# print examples with n=2, n=3 and n=4; comment the expected solution at end of line
+# PLAN:
+# Recursion
+
+# If n=0 or n==1, return n
+
+# running_sum = 1
+# numbers = [0, 1]
+# current_index = 1
+
+# while current_index < n:
+    # num_to_add = numbers[current_index - 1] + numbers[current_index - 2]
+
+    # running_sum += num_to_add
+
+    # numbers[n] = running_sum
+
+    # return running_sum + fib(curr_index+1)
 
 solution = Solution()
 print("should be 1:", solution.fib(2))  # 1
