@@ -20,6 +20,22 @@ class Solution:
 
         if n==0 or n==1: return n
         
+        if n==0 or n==1:
+            return n
+        
+        running_sum = 1
+        sums = [0, 1]
+        current_index = 2
+
+        while current_index < n:
+            num_to_add = sums[current_index-1] + sums(current_index - 2)
+
+            running_sum += num_to_add
+
+            sums.append(running_sum)
+
+            return running_sum + Solution.fib(current_index + 1)
+        
         return 0
     
 
@@ -29,15 +45,15 @@ class Solution:
 # If n=0 or n==1, return n
 
 # running_sum = 1
-# numbers = [0, 1]
-# current_index = 1
+# sums = [0, 1]
+# current_index = 2
 
 # while current_index < n:
-    # num_to_add = numbers[current_index - 1] + numbers[current_index - 2]
+    # num_to_add = sums[current_index - 1] + sums[current_index - 2]
 
     # running_sum += num_to_add
 
-    # numbers[n] = running_sum
+    # sums[n] = running_sum
 
     # return running_sum + fib(curr_index+1)
 
