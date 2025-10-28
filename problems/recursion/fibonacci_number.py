@@ -21,25 +21,22 @@ class Solution:
 
         if n==1 or n==2: return n
         
-        if n==0 or n==1:
-            return n
-        
         running_sum = 1
         sums = [0, 1]
         current_index = 2
 
-        while current_index < n:
-            num_to_add = sums[current_index-1] + sums[current_index - 2]
+        # while current_index < n:
+        #     num_to_add = sums[current_index-1] + sums[current_index - 2]
 
-            running_sum += num_to_add
+        #     running_sum += num_to_add
 
-            sums.append(running_sum)
+        #     sums.append(running_sum)
 
-            current_index +=1
+        #     current_index +=1
 
-            return running_sum + self.fib(current_index)
+        #     running_sum += self.fib(current_index)
         
-        return 0
+        return sums[n-1]
     
 
 # PLAN:
