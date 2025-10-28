@@ -7,6 +7,7 @@
 # PLAN:
 
 # Recursion
+# Should be O(log3(n))
 
 # if n== 0 return false
 
