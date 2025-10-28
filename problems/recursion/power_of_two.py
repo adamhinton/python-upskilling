@@ -15,9 +15,8 @@
 class Solution:
     def isPowerOfThree(self, n: int) -> bool:
         if n <= 0: return False
-        if n== 1: return True
 
-        return (n%3 == 0 and (n==3 or self.isPowerOfThree(n/3))) # or n== 1
+        return (n%3 == 0 and (n==3 or self.isPowerOfThree(n/3))) or n== 1
     
 solution = Solution()
 
