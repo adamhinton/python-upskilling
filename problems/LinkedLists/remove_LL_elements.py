@@ -13,7 +13,16 @@ class ListNode:
 
 class Solution:
     def removeElements(self, head: Optional[ListNode], val_to_remove: int) -> Optional[ListNode]:
-        return None
+        dummy_node = ListNode(0, head)
+        current_node = dummy_node
+
+        while current_node.next: 
+            if current_node.next.val == val_to_remove:
+                current_node.next = current_node.next.next
+            else:
+                current_node = current_node.next
+
+        return dummy_node.next
     
 
 # PLAN
@@ -28,3 +37,4 @@ class Solution:
 # current.next = current.next.next
 
 # return dummy.next
+
