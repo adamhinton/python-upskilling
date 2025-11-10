@@ -10,8 +10,36 @@
 
 # You are given two integer arrays students and sandwiches where sandwiches[i] is the type of the i​​​​​​th sandwich in the stack (i = 0 is the top of the stack) and students[j] is the preference of the j​​​​​​th student in the initial queue (j = 0 is the front of the queue). Return the number of students that are unable to eat.
 
-from collections import List, deque
+from collections import deque
+from typing import List
 
 class Solution:
     def countStudents(self, students: List[int], sandwiches: List[int]) -> int:
-        return 0
+        students_deque = deque(students)
+        sandwiches_deque = deque(sandwiches)
+        num_students_havent_eaten_conc = 0
+
+        while True:
+            if num_students_havent_eaten_conc == len(students_deque):
+                return len(students_deque)
+            student = students_deque.popleft()
+            if student == sandwiches_deque[0]:
+                sandwiches_deque.popleft()
+                num_students_havent_eaten_conc = 0
+
+            else:
+                students_deque.append(student)
+                num_students_havent_eaten_conc += 1
+
+
+
+solution = Solution()
+print(solution.countStudents([1, 1, 0, 0], [0, 1, 0, 1])) # 0
+print(solution.countStudents(students = [1,1,1,0,0,1], sandwiches = [1,0,0,0,1,1])) # 3
+
+
+
+# PLAN
+# O(n)
+# Need: stack, queue. Maybe bool to track whether a sandwich has been taken on the current run
+# Don't need to worry about sandwich types, just compare 0 and 1
