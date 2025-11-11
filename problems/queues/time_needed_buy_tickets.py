@@ -16,11 +16,13 @@ class Solution:
     
 # PLAN
 # O(n)
+# I originally thought about running a full simulation of this but it occurs to me that simple arithmetic is just as doable and more efficient
+# My brain was in queue mode because I came across this in queue practice
 
 # num_seconds = 0
 
 # for idx, num_tickets_needed in tickets:
-    # if idx < k:
+    # if idx <= k:
         # num_seconds += min(tickets[k], num_tickets_needed)
     # elif idx > k:
         # num_seconds += min(tickets[k], num_tickets_needed - 1)
