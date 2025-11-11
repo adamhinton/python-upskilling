@@ -8,11 +8,18 @@
 
 # Return the time taken for the person initially at position k (0-indexed) to finish buying tickets.
 
-from collections import List
+from typing import List
 
 class Solution:
     def timeRequiredToBuy(self, tickets: List[int], k: int) -> int:
-        return 0
+        num_seconds = 0
+        for idx, num_tickets_needed in enumerate(tickets):
+            if idx <= k:
+                num_seconds += min(tickets[k], num_tickets_needed)
+            else:
+                num_seconds += min(tickets[k] - 1, num_tickets_needed)
+
+        return num_seconds
     
 # PLAN
 # O(n)
@@ -29,3 +36,10 @@ class Solution:
 
 
 # return num_seconds
+
+
+
+solution = Solution()
+
+print(solution.timeRequiredToBuy([2, 3, 2], 2)) # 6
+print(solution.timeRequiredToBuy([5, 1, 1, 1], 0)) # 8
