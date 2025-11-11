@@ -18,8 +18,8 @@ class RecentCounter:
         
 
     def ping(self, t: int) -> int:
-        self.pings.append(t)
-        while t - self.pings[-1] >= 3000:
+        self.pings.appendleft(t)
+        while t - self.pings[-1] > 3000:
             self.pings.pop()
         return len(self.pings)
 
