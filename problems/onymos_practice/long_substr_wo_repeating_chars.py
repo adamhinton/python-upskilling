@@ -7,7 +7,6 @@ from typing import Dict
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         if len(s) < 2: return len(s)
-        tracker: Dict[str, int] = {}
 
         left = 0
         right = 1
@@ -22,8 +21,6 @@ class Solution:
         while right < len(s):
             l_str = s[left]
             r_str = s[right]
-
-            if left == right: right+=1
 
             while r_str in letter_set:
                 letter_set.remove(s[left])
