@@ -15,3 +15,20 @@ from typing import List, Tuple, Dict
 
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> Tuple[int, int]:
+
+        raise ValueError("No solution found")
+    
+# PLAN:
+# O(n)
+# Need: hash table; Dict[int, int] : value, index
+# Can do this in one pass I think. For every number, check if its needed num has already occurred
+# Make tracker hash table
+# for idx, num in enumerate nums:
+    # tracker[num] = idx
+    # needed = target - num
+    # if needed in tracker, return [idx, index of needed]
+
+solution = Solution()
+print(solution.twoSum([2,7,11,15], 9)) # [0, 1]
+print(solution.twoSum([3,2,4], 6)) #[1, 2]
+print(solution.twoSum([3,3], 6)) #[0, 1]
