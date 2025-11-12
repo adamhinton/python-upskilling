@@ -16,4 +16,38 @@ from typing import List
 
 class Solution:
     def maxArea(self, height: List[int]) -> int:
-        return -1
+        best_area = 0
+        left = 0
+        right = len(height) - 1
+
+        while left< right:
+            l_height = height[left]
+            r_height = height[right]
+            curr_length = right - left
+            curr_best_height = min(l_height, r_height)
+            current_area = curr_length * curr_best_height
+            best_area = max(current_area, best_area)
+
+            if l_height < r_height:
+                l_height += 1
+            else:
+                right-= 1
+
+        return best_area
+    
+
+# PLAN:
+# Need:
+# sliding window - start at 0 and 1
+# Calculate area for each configuration
+
+# best_area = 0
+# left = 0
+# right = 1
+# best_left_index = 0
+
+# loop through:
+# Calculate current area - length (right - left - 1) * height (min(height[left], height[right]))
+# If that's better than best area, best_left_index = left 
+# right++
+
