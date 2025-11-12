@@ -19,10 +19,11 @@ class Solution:
         tracker: Dict[int, int] = {}
 
         for idx, val in enumerate(nums):
-            tracker[val] = idx
             needed = target - val
-            if tracker.get(needed):
+            if tracker.get(needed) is not None:
                 return [tracker.get(needed), idx]
+            tracker[val] = idx
+
 
         raise ValueError("No solution found")
     
