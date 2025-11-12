@@ -17,15 +17,12 @@ from typing import List
 class Solution:
     def maxArea(self, height: List[int]) -> int:
         best_area = 0
-        left = 0
-        right = len(height) - 1
+        left, right = 0, len(height) -1
 
         while left< right:
-            l_height = height[left]
-            r_height = height[right]
-            curr_length = right - left
-            curr_best_height = min(l_height, r_height)
-            current_area = curr_length * curr_best_height
+            l_height, r_height = height[left], height[right]
+            current_area = (right-left) * min(l_height, r_height)
+
             best_area = max(current_area, best_area)
 
             if l_height < r_height:
