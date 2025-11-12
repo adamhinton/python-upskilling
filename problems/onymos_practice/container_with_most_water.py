@@ -29,7 +29,7 @@ class Solution:
             best_area = max(current_area, best_area)
 
             if l_height < r_height:
-                l += 1
+                left += 1
             else:
                 right-= 1
 
