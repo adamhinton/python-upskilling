@@ -12,6 +12,25 @@ from typing import List
 
 class Solution:
     def longestOnes(self, nums: List[int], k: int) -> int:
+        if (len(nums) == 1 or len(nums) == k): return len(nums)
+
+        left, right = 0, 1
+        running_zero_count = 0
+        solution = 0
+
+        while right < len(nums):
+            right_val = nums[right]
+            if right_val == 0:
+                running_zero_count += 1
+
+            while running_zero_count > k:
+                left_val = nums[left]
+                if left_val == 0: running_zero_count -= 1
+                left += 1
+
+            current_length = right - left + 1
+            solution = max(current_length, solution)
+
         return 0
     
 # PLAN:
