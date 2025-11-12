@@ -16,6 +16,14 @@ from typing import List, Tuple, Dict
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> Tuple[int, int]:
 
+        tracker: Dict[int, int] = {}
+
+        for idx, val in enumerate(nums):
+            tracker[val] = idx
+            needed = target - val
+            if tracker.get(needed):
+                return [tracker.get(needed), idx]
+
         raise ValueError("No solution found")
     
 # PLAN:
