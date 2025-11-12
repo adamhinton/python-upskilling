@@ -4,12 +4,32 @@
 
 # Letters are case sensitive, for example, "Aa" is not considered a palindrome.
 
- class Solution:
+from typing import Dict
+
+class Solution:
     def longestPalindrome(self, s: str) -> int:
         palindrome_length = 0
 
+        tracker: Dict[str, int] = {}
+        odd_numbers_count = 0
+
+        for char in s:
+            if tracker.get(char) is None:
+                tracker[char] = 1
+                odd_numbers_count += 1
+            else:
+                odd_numbers_count -= 1
+                tracker[char] = 0
+                palindrome_length += 2
+
         return palindrome_length
     
+solution = Solution() 
+print(solution.longestPalindrome("abccccdd")) # 7
+print(solution.longestPalindrome("a")) # 1
+
+
+
 # PLAN
 # O(n)
 # Need:
