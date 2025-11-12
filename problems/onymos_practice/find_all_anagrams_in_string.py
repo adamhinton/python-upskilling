@@ -6,10 +6,34 @@
 # You may return the answer in any order.
 
 from typing import List
+from collections import Counter
 
 class Solution:
     def findAnagrams(self, s: str, p: str) -> List[int]:
-        return ['a']
+        solution = []
+        if len(s) < len(p): return solution
+
+        counter_p = Counter(p)
+        counter_s = Counter(s[:len(p)])
+
+        left = 0
+        right = len(p) -1
+
+        while right < len(s):
+            if counter_p == counter_s:
+                solution.append(left)
+            
+            counter_s[s[left]] -=1
+            if counter_s[s[left]] == 0:
+                del counter_s[s[left]]
+            left+=1
+            right +=1
+            # Hacky solution to make sure we don't get index error at end of string
+            # could optimize this better
+            if right < len(s):
+                counter_s[s[right]] = counter_s.setdefault(s[right], 0) + 1
+
+        return solution
     
 
 # PLAN:
@@ -39,3 +63,7 @@ class Solution:
     # left++
     # right++
     # counter_s[right] ++ if it exists; =1 if not
+
+solution = Solution()
+# print(solution.findAnagrams("cbaebabacd", "abc")) # [0,6]
+print(solution.findAnagrams("abab", "ab")) # [0,1,2]
