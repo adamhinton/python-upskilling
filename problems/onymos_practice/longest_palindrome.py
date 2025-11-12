@@ -14,7 +14,7 @@ class Solution:
         odd_numbers_count = 0
 
         for char in s:
-            if tracker.get(char) is None:
+            if tracker.get(char) in (None, 0):
                 tracker[char] = 1
                 odd_numbers_count += 1
             else:
@@ -22,7 +22,8 @@ class Solution:
                 tracker[char] = 0
                 palindrome_length += 2
 
-        return palindrome_length
+        has_middle_char = odd_numbers_count > 0
+        return palindrome_length + (1 if has_middle_char else 0)
     
 solution = Solution() 
 print(solution.longestPalindrome("abccccdd")) # 7
