@@ -15,24 +15,34 @@ class Solution:
         if (len(nums) == 1 or len(nums) == k): return len(nums)
 
         left, right = 0, 1
-        running_zero_count = 0
+        running_zero_count = 0 if nums[left] == 1 else 1
         solution = 0
 
         while right < len(nums):
+            # current_array = nums[left:right+1]
             right_val = nums[right]
             if right_val == 0:
                 running_zero_count += 1
 
             while running_zero_count > k:
+                # current_array = nums[left:right+1]
                 left_val = nums[left]
                 if left_val == 0: running_zero_count -= 1
                 left += 1
 
+            # current_array = nums[left:right+1]
             current_length = right - left + 1
             solution = max(current_length, solution)
 
-        return 0
+            right +=1
+
+        return solution
     
+solution = Solution()
+print(solution.longestOnes([1,1,1,0,0,0,1,1,1,1,0], 2)) # 6
+print(solution.longestOnes([0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1], 3)) # 10
+
+
 # PLAN:
 # O(n)
 # one pass
