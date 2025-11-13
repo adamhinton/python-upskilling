@@ -4,10 +4,28 @@
 # https://leetcode.com/problems/baseball-game/description/
 
 from typing import List
+from collections import deque
 
 class Solution:
     def calPoints(self, operations: List[str]) -> int:
-        return 0
+        scores = deque([])
+
+        for op in operations:
+            if op == "+":
+                new_score = scores[-1] + scores[-2]
+                scores.append(new_score)
+
+            elif op == "D":
+                new_score = 2 * scores[-1]
+                scores.append(new_score)
+
+            elif op == "C":
+                scores.pop()
+
+            else: # it's an integer
+                scores.append(int(op))
+        
+        return sum(scores)
     
 # PLAN:
 # O(n)
@@ -34,3 +52,9 @@ class Solution:
     # scores.pop()
 
 # return sum(scores)
+
+solution = Solution()
+
+print(solution.calPoints(["5","2","C","D","+"])) # 30
+print(solution.calPoints(["5","-2","4","C","D","9","+","+"])) # 27
+print(solution.calPoints(["1","C"])) # 0
