@@ -1,9 +1,9 @@
 # Purpose
 
-I'm upskilling my Data Structures and Algorithms!
+Prepare for interview with Onymos Inc
 
-I started doing this after I failed a technical assessment. And I figured, why not do it in public?
+I'm learning and growing as a software engineer, and I want to do it in public!
 
-I'll be working on some trickier ones, as well as grinding easy problems to stay sharp.
+This practice repo is for solving DSA problems, specifically for my upcoming series of technical interviews with Onymos Inc.
 
-Join me as I grow and learn.
+I seriously doubt anyone will ever read this. If you do --- hello! Please connect with me on Github. I'd love to hear why on earth you were reading this.
