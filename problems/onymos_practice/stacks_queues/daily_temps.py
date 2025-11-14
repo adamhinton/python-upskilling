@@ -15,7 +15,7 @@ class Solution:
         solution = [0] * len(temperatures)
         mono_stack = []
 
-        for idx, temp in temperatures[::-1]:
+        for idx, temp in enumerate(temperatures[::-1]):
             while mono_stack and temperatures[mono_stack[-1]] <= temp:
                 mono_stack.pop()
 
@@ -23,7 +23,7 @@ class Solution:
 
             mono_stack.append(idx)
 
-        return [0]
+        return solution
     
 # PLAN:
 # O(n)
@@ -43,8 +43,8 @@ class Solution:
 
     # push idx in to mono_stack
 
-solution = Solution()
-print(solution.dailyTemperatures([73,74,75,71,69,72,76,73])) # [1,1,4,2,1,1,0,0]
-print(solution.dailyTemperatures([30,40,50,60])) # [1,1,1,0]
-print(solution.dailyTemperatures([30,60,90])) # [1,1,0]
+my_solution = Solution()
+print(my_solution.dailyTemperatures([73,74,75,71,69,72,76,73])) # [1,1,4,2,1,1,0,0]
+print(my_solution.dailyTemperatures([30,40,50,60])) # [1,1,1,0]
+print(my_solution.dailyTemperatures([30,60,90])) # [1,1,0]
 
