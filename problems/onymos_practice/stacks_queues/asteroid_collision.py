@@ -20,13 +20,23 @@ class Solution:
         solution = [] # stack
 
         for ast in asteroids:
+
+            # top astroid in stack is solution[-1]
             if not solution or ast > 0:
                 solution.append(ast)
                 continue
 
+            is_same_dir = (ast > 0 and solution[-1] > 0) or (ast < 0 and solution[-1] < 0)
+            if is_same_dir:
+                solution.append(ast)
+                continue
+
+
             while solution and solution[-1] > 0:
                 if abs(ast) > abs(solution[-1]):
                     solution.pop() # # top of stack explodes, move on to next asteroid in stack
+                    if not solution:
+                        solution.append(ast)
 
                 elif abs(ast) < abs(solution[-1]):
                     break # ast explodes
@@ -43,6 +53,7 @@ solution = Solution()
 print(solution.asteroidCollision([5,10,-5])) # [5, 10]
 print(solution.asteroidCollision([8,-8])) # []
 print(solution.asteroidCollision([10,2,-5])) # [10]
+print(solution.asteroidCollision([3,5,-6,2,-1,4])) # [-6, 2, 4]
 
 
     
