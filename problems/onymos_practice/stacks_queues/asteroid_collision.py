@@ -29,15 +29,22 @@ class Solution:
                     solution.pop() # # top of stack explodes, move on to next asteroid in stack
 
                 elif abs(ast) < abs(solution[-1]):
-                    continue # ast explodes
+                    break # ast explodes
 
                 else: # the're equal
                     solution.pop()
                     break # they both explode
 
-
+            # solution.append(ast)
 
         return solution
+    
+solution = Solution()
+print(solution.asteroidCollision([5,10,-5])) # [5, 10]
+print(solution.asteroidCollision([8,-8])) # []
+print(solution.asteroidCollision([10,2,-5])) # [10]
+
+
     
 # PLAN
 # O(n), one pass
@@ -69,9 +76,4 @@ class Solution:
                 # continue
 
 # return solution
-
-solution = Solution()
-print(solution.asteroidCollision([5,10,-5])) # [5, 10]
-print(solution.asteroidCollision([8,-8])) # []
-print(solution.asteroidCollision([10,2,-5])) # [10]
 
