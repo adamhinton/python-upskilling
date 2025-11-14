@@ -32,7 +32,7 @@ class Solution:
             while solution and solution[-1] > 0:
                 if abs(ast) > abs(solution[-1]):
                     solution.pop() # # top of stack explodes, move on to next asteroid in stack
-                    if not solution or is_same_direction(ast, solution[-1]):
+                    if not solution or ast > 0 or ((ast < 0 and solution[-1] < 0)):
                         solution.append(ast)
 
                 elif abs(ast) < abs(solution[-1]):
