@@ -21,7 +21,33 @@ class Solution:
     def decodeString(self, s: str) -> str:
         solution = []
 
-        return "".join(solution)
+        idx = 0
+
+        while idx < len(s):
+            char = s[idx]
+
+            if char != "[":
+                solution.append(char)
+                idx += 1
+                continue
+
+            # Char is "["
+            idx+=1
+            num_repetitions = int(solution.pop())
+            str_to_repeat = [] # will convert to str
+
+            while s[idx] != "]":
+                current_char = s[idx]
+                str_to_repeat.append(current_char)
+                idx+=1
+            
+            repeated_code = "".join(str_to_repeat) * num_repetitions
+            solution.append(repeated_code)
+
+            idx+=1 # get past the ]
+
+        solution_str = "".join(solution)
+        return solution_str
     
 # PLAN:
 # O(n)
@@ -52,3 +78,8 @@ class Solution:
     # idx++ >>> get past the ]
 
     # now add str_to_repeat to solution num_repetitions times
+
+
+solution = Solution()
+print(solution.decodeString("3[a]2[bc]")) # "aaabcbc"
+    
