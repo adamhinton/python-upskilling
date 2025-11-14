@@ -25,16 +25,9 @@ class Solution:
         for ast in asteroids:
 
             # top astroid in stack is solution[-1]
-            if not solution or ast > 0:
+            if not solution or ast > 0 or ((ast < 0 and solution[-1] < 0)):
                 solution.append(ast)
                 continue
-
-            # If both are positive or both are negative, add ast to stack
-            is_same_dir = (ast > 0 and solution[-1] > 0) or (ast < 0 and solution[-1] < 0)
-            if is_same_direction(ast, solution[-1]):
-                solution.append(ast)
-                continue
-
 
             while solution and solution[-1] > 0:
                 if abs(ast) > abs(solution[-1]):
