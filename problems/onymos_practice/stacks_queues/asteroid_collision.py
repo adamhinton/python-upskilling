@@ -17,6 +17,9 @@ from typing import List
 
 class Solution:
     def asteroidCollision(self, asteroids: List[int]) -> List[int]:
+        def is_same_direction(ast1: int, ast2: int) -> bool:
+            return (ast1 > 0 and ast2 > 0) or (ast1 < 0 and ast2 < 0)
+
         solution = [] # stack
 
         for ast in asteroids:
@@ -26,8 +29,9 @@ class Solution:
                 solution.append(ast)
                 continue
 
+            # If both are positive or both are negative, add ast to stack
             is_same_dir = (ast > 0 and solution[-1] > 0) or (ast < 0 and solution[-1] < 0)
-            if is_same_dir:
+            if is_same_direction(ast, solution[-1]):
                 solution.append(ast)
                 continue
 
@@ -35,7 +39,7 @@ class Solution:
             while solution and solution[-1] > 0:
                 if abs(ast) > abs(solution[-1]):
                     solution.pop() # # top of stack explodes, move on to next asteroid in stack
-                    if not solution:
+                    if not solution or is_same_direction(ast, solution[-1]):
                         solution.append(ast)
 
                 elif abs(ast) < abs(solution[-1]):
@@ -45,15 +49,14 @@ class Solution:
                     solution.pop()
                     break # they both explode
 
-            # solution.append(ast)
-
         return solution
     
 solution = Solution()
-print(solution.asteroidCollision([5,10,-5])) # [5, 10]
-print(solution.asteroidCollision([8,-8])) # []
-print(solution.asteroidCollision([10,2,-5])) # [10]
-print(solution.asteroidCollision([3,5,-6,2,-1,4])) # [-6, 2, 4]
+# print(solution.asteroidCollision([5,10,-5])) # [5, 10]
+# print(solution.asteroidCollision([8,-8])) # []
+# print(solution.asteroidCollision([10,2,-5])) # [10]
+# print(solution.asteroidCollision([3,5,-6,2,-1,4])) # [-6, 2, 4]
+print(solution.asteroidCollision([-2,-2,1,-2])) # [-2, -2, -2]
 
 
     
