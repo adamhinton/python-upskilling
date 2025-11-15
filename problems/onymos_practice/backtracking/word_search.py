@@ -16,7 +16,6 @@ class Solution:
         num_rows, num_columns = len(board), len(board[0])
         path = set()
         dirs = (-1, 0, 1, 0, -1)
-        # pairwise_dirs = pairwise(dirs)
 
         def recursive_helper(row: int, col: int, word_index_needed: int):
             if word_index_needed == len(word): # The word has been completed
@@ -30,7 +29,6 @@ class Solution:
             
             # Now we know it's the char we need
 
-            
             path.add((row, col))
 
             for a,b in [(-1,0), (0,1), (1,0), (0,-1)]:
