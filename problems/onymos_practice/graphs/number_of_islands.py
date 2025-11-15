@@ -26,27 +26,6 @@ class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
         num_islands = 0
 
-        m, n = len(grid), len(grid[0])
-        dirs = (-1, 0, 1, 0, -1)
- 
-        def recursive_helper(i, j):
-            grid[i][j] = 0
-
-            for a,b in pairwise(dirs):
-                x, y = i+a, j+b
-                if (0<=x < m) and (0 <= y < n) and grid[x][y] == "1":
-                    recursive_helper(x, y)
-
-        # Outer loop
-
-        for i in range(m):
-            for j in range(n):
-                val = grid[i][j]
-                if val == "1":
-                    num_islands += 1
-                    recursive_helper(i, j)
-
-
         return num_islands
     
 
