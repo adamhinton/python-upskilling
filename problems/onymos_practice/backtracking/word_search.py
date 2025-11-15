@@ -49,3 +49,8 @@ class Solution:
     # path.remove((col, row))
 
     # Now it moves on to the next letter in the outer loop
+
+solution = Solution()
+print(solution.exist([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "ABCCED")) # True
+print(solution.exist([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "SEE")) # True
+print(solution.exist([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "ABCB")) # False
