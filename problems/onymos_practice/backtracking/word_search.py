@@ -13,11 +13,44 @@ from itertools import pairwise
 
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
+        num_rows, num_columns = len(board), len(board[0])
+        path = set()
+        dirs = (-1, 0, 1, 0, -1)
+
+        def recursive_helper(row: int, col: int, word_index_needed: int):
+            if word_index_needed == len(word): # The word has been completed
+                return True
+
+            if (row < 0 or row >= num_rows) or (col < 0 or col >= num_columns) or board[row][col] != word[word_index_needed] or (row, col) in path:
+                return False
+            
+            char_at_coords = board[row][col]
+            char_needed = word[word_index_needed]
+            
+            # Now we know it's the char we need
+
+            
+            path.add((row, col))
+
+            for a,b in pairwise(dirs):
+                if recursive_helper(row + a, col + b, word_index_needed + 1):
+                    return True
+            
+
+            path.remove((row, col))
+
+            return False
+        
+        for i in range (num_rows):
+            for j in range( num_columns):
+                if recursive_helper(i, j, 0):
+                    return True
+                
         return False
 
 
 # PLAN:
-# Time Complexity:
+# Tcolme Complexity:
     # This one isn't pretty. Something like m * n * len(word)
 
 # NEED:
