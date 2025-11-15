@@ -22,7 +22,28 @@ from itertools import pairwise
 
 class Solution:
     def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
-        return [[]]
+        original_color = image[sr][sc]
+        new_color = color # I like this naming better
+        dirs = (-1, 0, 1, 0, -1) # will use this to make directional changes
+
+        m, n = len(image), len(image[0])
+
+
+        def recursive_helper(i: int, j: int):
+            image[i][j] = new_color
+
+            for a, b in pairwise(dirs):
+                x, y = i + a, j+ b
+
+                if (0 <= x < m) and (0 <= y < n) and (image[x][y]== original_color):
+                    recursive_helper(x, y)
+
+        recursive_helper(sr, sc)
+
+        return image
+
+solution = Solution()
+print(solution.floodFill([[1,1,1],[1,1,0],[1,0,1]], 1, 1, 2))
 
 # PLAN
 # O(n)
@@ -42,3 +63,5 @@ class Solution:
 
 # Starting at original coordinates:
     # recursive_helper(sr, sc)
+
+# return image
