@@ -23,6 +23,8 @@
 # Time complexity: O(n) unless I'm much mistaken
     # Both the helper and the main loop will only touch each item once
 
+# num_islands = 0
+
 # Loop through each item
 # WHen you first encounter a 1 in this main loop, islands++
 #   If value == 1:
@@ -38,14 +40,18 @@
         # If neighbor exists and has value 1:
             # recursive_helper(neighbor's coordinates)
 
-# num_islands = 0
-
 
 # return num_islands
-
 
 from typing import List
 
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
-        
+        num_islands = 0
+
+        # Outer loop
+
+        def recursive_helper(coordinates):
+            return None
+
+        return num_islands
