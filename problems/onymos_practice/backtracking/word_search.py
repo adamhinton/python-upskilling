@@ -43,6 +43,9 @@ class Solution:
     # path.add((col, row))
 
     # For up down left right x, y:
-        # recursive_helper(x, y, i+1)
+        # if recursive_helper(x, y, i+1):
+            # return True
     
     # path.remove((col, row))
+
+    # Now it moves on to the next letter in the outer loop
