@@ -16,6 +16,7 @@ class Solution:
         num_rows, num_columns = len(board), len(board[0])
         path = set()
         dirs = (-1, 0, 1, 0, -1)
+        pairwise_dirs = pairwise(dirs)
 
         def recursive_helper(row: int, col: int, word_index_needed: int):
             if word_index_needed == len(word): # The word has been completed
@@ -32,7 +33,7 @@ class Solution:
             
             path.add((row, col))
 
-            for a,b in pairwise(dirs):
+            for a,b in [(-1,0), (0,1), (1,0), (0,-1)]:
                 if recursive_helper(row + a, col + b, word_index_needed + 1):
                     return True
             
@@ -43,6 +44,9 @@ class Solution:
         
         for i in range (num_rows):
             for j in range( num_columns):
+                current_letter = board[i][j]
+                if current_letter != word[0]:
+                    continue
                 if recursive_helper(i, j, 0):
                     return True
                 
