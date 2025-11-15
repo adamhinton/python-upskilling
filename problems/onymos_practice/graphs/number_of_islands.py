@@ -52,6 +52,14 @@ class Solution:
 
         m, n = len(grid), len(grid[0])
         dirs = (-1, 0, 1, 0, -1)
+ 
+        def recursive_helper(i, j):
+            grid[i][j] = 0
+
+            for a,b in pairwise(dirs):
+                x, y = i+a, j+b
+                if (0<=x < m) and (0 <= y < n) and grid[x][y] == "1":
+                    recursive_helper(x, y)
 
         # Outer loop
 
@@ -59,18 +67,26 @@ class Solution:
             for j in range(n):
                 val = grid[i][j]
                 if val == "1":
-                    num_islands += "1"
+                    num_islands += 1
                     recursive_helper(i, j)
-
-        def recursive_helper(i, j):
-            grid[i][j] = 0
-
-            for a,b in pairwise(dirs):
-                x, y = i+a, j+b
-                if (0<=x <= m) and (0 <= y <= n) and grid[x][y] == "1":
-                    recursive_helper(x, y)
 
 
         return num_islands
     
+
+solution = Solution()
+print(solution.numIslands([
+  ["1","1","1","1","0"],
+  ["1","1","0","1","0"],
+  ["1","1","0","0","0"],
+  ["0","0","0","0","0"]
+])) # 1
+
+solution = Solution()
+print(solution.numIslands([
+  ["1","1","0","0","0"],
+  ["1","1","0","0","0"],
+  ["0","0","1","0","0"],
+  ["0","0","0","1","1"]
+])) # 3
     
