@@ -24,6 +24,7 @@ class Solution:
     def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
         original_color = image[sr][sc]
         new_color = color # I like this naming better
+        if original_color == new_color: return image
         dirs = (-1, 0, 1, 0, -1) # will use this to make directional changes
 
         m, n = len(image), len(image[0])
