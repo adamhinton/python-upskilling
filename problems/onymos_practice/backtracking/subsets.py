@@ -11,7 +11,7 @@ from typing import List
 
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        solution, running_list = [], []
+        solution, running_list = [], [] # always add a COPY of running_list to solution
         total_length = len(nums)
 
         def recursive_helper(i: int):
