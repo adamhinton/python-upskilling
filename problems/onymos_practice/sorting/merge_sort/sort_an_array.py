@@ -24,7 +24,35 @@ class Solution:
 
                 # now both arrays are sorted
 
-                i, j, k = 0 # left index, right index, nums index
+                i, j, k = 0, 0, 0 # left index, right index, nums index
+
+                # Zip the two arrays in nums
+                while (i < len(left_arr) and j < len(right_arr)):
+                    left_el = left_arr[i]
+                    right_el = right_arr[j]
+
+                    if left_el <= right_el: # left is smaller or equal; stable sort
+                        nums[k] = left_el
+                        i += 1
+
+                    else: # right is smaller or equal
+                        nums[k] = right_el
+                        j += 1
+                    k +=1
+
+                # Now deal with leftovers
+
+                while i < len(left_arr):
+                    left_el = left_arr[i]
+                    nums[k] = left_el
+                    i += 1
+                    k += 1
+
+                while j < len(right_arr):
+                    right_el = right_arr[j]
+                    nums[k] = right_el
+                    j += 1
+                    k += 1
 
 
 
