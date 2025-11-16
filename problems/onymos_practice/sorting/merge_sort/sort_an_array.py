@@ -62,6 +62,7 @@ class Solution:
     
 solution = Solution()
 print(solution.sortArray([5,2,3,1]))
+print(solution.sortArray([5,1,1,2,0,0]))
     
 # PLAN
 # Time complexity: O(n log(n))
