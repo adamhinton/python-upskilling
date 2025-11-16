@@ -12,3 +12,12 @@ for a,b in pairwise(dirs):
     #         recursive_helper(x, y)
 
             
+# Stuff to try:
+    # work backwards
+        # start from right of array
+        # Eliminate ineligible contenders first instead of finding eligible ones
+            # e.g. in surroudned regions, eliminate ones who aren't surrounded first
+    
+    # modify arrays in place for tracking
+
+    
