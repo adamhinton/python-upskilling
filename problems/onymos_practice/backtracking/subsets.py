@@ -11,11 +11,32 @@ from typing import List
 
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        solution = []
+        solution, running_list = [], []
+        total_length = len(nums)
+
+        def recursive_helper(i: int):
+            # End of nums
+            if i == total_length:
+                solution.append(running_list[:]) # always add a copy to solution
+                return
+            
+            current_val = nums[i]
+            
+            # Don't add val
+            recursive_helper(i+1)
+
+            # add val
+            running_list.append(current_val)
+            recursive_helper(i+1)
+            running_list.pop()
+
+        recursive_helper(0)
 
         
-        
         return solution
+    
+solution = Solution()
+print(solution.subsets([1,2,3]))
     
 # PLAN:
 
@@ -47,3 +68,6 @@ class Solution:
         # sol.append(current_val)
         # recursive_helper(i+1)
         # sol.pop()
+
+# recursive_helper(0)
+# return solution
