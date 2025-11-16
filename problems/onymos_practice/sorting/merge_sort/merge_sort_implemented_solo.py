@@ -9,7 +9,7 @@ def merge_sort(arr: List[int]):
 
     if len(arr) > 1: # Base case is len 1, do nothing if so
         left_arr = arr[:len(arr) // 2]
-        right_arr = arr[:len(arr) // 2:]
+        right_arr = arr[len(arr) // 2:]
 
         merge_sort(left_arr)
         merge_sort(right_arr)
