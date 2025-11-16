@@ -19,5 +19,45 @@ for a,b in pairwise(dirs):
             # e.g. in surroudned regions, eliminate ones who aren't surrounded first
     
     # modify arrays in place for tracking
-
     
+
+# Backtracking:
+    # Base case: When you get to the end
+    # Start case: How the function is called
+
+    # Branches: Which scenarios do you back track for?  
+        # directions for mazes
+        # Adding or not adding for permutations
+        # etc
+
+
+# Binary search:
+def binary_search_template(arr, target):
+    """
+    Performs a binary search to find the first element in 'arr' that is 
+    greater than or equal to 'target', or its insertion point.
+    Assumes 'arr' is sorted in ascending order.
+    """
+    left, right = 0, len(arr) 
+    # 'right' is initialized to len(arr) to represent the potential insertion point 
+    # after the last element. The search space is [left, right).
+
+    while left < right:
+        mid = left + (right - left) // 2 
+        # Calculate mid to prevent potential overflow with large left/right values.
+
+        if arr[mid] < target:
+            # If the middle element is less than the target, 
+            # the target must be in the right half (or not present).
+            # We discard mid and the left part, so move 'left' past 'mid'.
+            left = mid + 1
+        else:
+            # If the middle element is greater than or equal to the target,
+            # the target could be mid itself or in the left half.
+            # We keep mid as a potential candidate, so move 'right' to 'mid'.
+            right = mid
+
+    # After the loop, 'left' (which equals 'right') will be the index of 
+    # the first element greater than or equal to 'target',
+    # or 'len(arr)' if all elements are less than 'target'.
+    return left
