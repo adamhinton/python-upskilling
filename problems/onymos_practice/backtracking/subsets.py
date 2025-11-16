@@ -32,7 +32,6 @@ class Solution:
 
         recursive_helper(0)
 
-        
         return solution
     
 solution = Solution()
