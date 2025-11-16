@@ -12,6 +12,8 @@ from typing import List
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         solution = []
+
+        
         
         return solution
     
@@ -27,3 +29,21 @@ class Solution:
 
 # total_nums = len(nums)
 
+# solution = []
+# running_list = []
+
+
+# def recursive_helper(i: int):
+    # If end of nums, 
+    #   solution.append(running_list[:])
+    #   return
+
+    # current_val = nums[i]
+
+    # First, recurse without adding nums[i]
+    # recursive_helper(i+1)
+
+    # Then, add nums[i] and recurse:
+        # sol.append(current_val)
+        # recursive_helper(i+1)
+        # sol.pop()
