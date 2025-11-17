@@ -1,3 +1,5 @@
+# Doing this again for practice
+
 # 438. Find All Anagrams in a String
 # Medium
 # Given two strings s and p, return an array of all the start indices of p's anagrams in s. You may return the answer in any order.
@@ -12,6 +14,30 @@ class Solution:
         solution = []
         len_s = len(s)
         len_p = len(p)
+
+        if len_p > len_s:
+            return []
+        
+        if len_p == len_s:
+            return [0]
+
+        counter_s = Counter(s[:len_p])
+        counter_p = Counter(p)
+
+        left, right = 0, len_p - 1
+
+        while (left < len_s - len_p):
+            # We do updates to counter_s at the end of the previous iteration
+            if counter_s == counter_p:
+                solution.append(left)
+
+            counter_s[s[left]] -= 1
+            
+            left += 1
+            right +=1
+
+            counter_s[s[right]] += 1
+
 
         return solution
     
@@ -39,3 +65,11 @@ class Solution:
         # I'll get a solution working first.
 
     # left++, right++
+
+solution = Solution()
+print(solution.findAnagrams("cbaebabacd", "abc"))
+# [0,6]
+
+print(solution.findAnagrams("abab", "ab"))
+# [0,1,2]
+
