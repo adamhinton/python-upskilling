@@ -18,7 +18,38 @@ from typing import List
 
 class Solution:
     def asteroidCollision(self, asteroids: List[int]) -> List[int]:
+        def is_same_direction(ast1: int, ast2: int) -> bool:
+            return (ast1 < 0 and ast2 < 0) or (ast1 > 0 and ast2 > 0)
+
         solution = []
+
+        for ast in asteroids:
+            if (not solution) or solution[-1] <0 or ast > 0:
+                solution.append(ast)
+                continue
+
+            # now we know ast is negative
+
+            while solution[-1] > 0:
+
+                top_asteroid = solution[-1]
+
+                if abs(ast) > abs(top_asteroid):
+                    solution.pop()
+                    
+                    if not solution or solution[-1] < 0:
+                        solution.append(ast)
+                        break
+                    # continue    
+
+                elif abs(ast) == abs(top_asteroid): # both explode
+                    solution.pop()
+                    break
+
+                else: # ast is smaller
+                    break
+
+            
 
         return solution
     
@@ -38,7 +69,10 @@ class Solution:
     # Note that asteroids[i] != 0
 
 # for ast in asteroids:
-    # if not solution, add asteroid to solution
+    # if not solution 
+    # or if top ast is negative
+    #  or ast is positive:
+    #    add asteroid to solution
 
     # if ast is positive:
         # add ast to solution
