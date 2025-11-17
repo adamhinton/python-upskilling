@@ -24,6 +24,45 @@ class Solution:
 # PLAN
 # Time: O(n^2)
 # Space: O(n) I believe
+# Need: Two pointers, sorting
+    # Don't think I need a hash map
+# Note: I'm returning tuples of values, not tuples of indexes
+    # I think some variations of this want tuples of indexes
+
+# arr.sort()
+# total_nums = len(nums)
+
+# for i in range(total_nums - 2): >> stop two nums before end of array
+    # val = nums[i]
+
+    # left = 0
+    # right = total_nums - 1
+
+    # while left < right:
+        # num_j = nums[left]
+        # num_k = nums[right]
+
+        # needed = 0 - val
+
+        # j_plus_k = num_j + num_k
+
+        # IF j_plus_k == needed:
+            # solution.append((val, num_j, num_k))
+            # left++ 
+            # right--
+            # continue
+
+        # if j_plus_k is negative:
+            # left++
+            # continue
+
+        # else: >> j_plus_k is positive
+            # right--
+            # continue
+
+
+# return solution
+
 
 solution = Solution()
 print(solution.threeSum([-1,0,1,2,-1,-4]))
