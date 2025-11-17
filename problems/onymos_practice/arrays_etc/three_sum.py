@@ -26,7 +26,10 @@ class Solution:
             if val > 0:
                 break
 
-            left = 0
+            if i > 0 and val == nums[i-1]:
+                continue
+
+            left = i+1
             right = total_nums - 1
 
             while left < right:
@@ -45,6 +48,13 @@ class Solution:
                     # Should I be incrementing both of these?
                     left += 1
                     right -= 1
+                    # skip dupes
+                    while  nums[left] == num_j and left < right:
+                        left +=1
+                    while nums[right] == num_k and right > left:
+                        right -=1
+
+                    
                     continue
 
                 if j_plus_k < needed:
