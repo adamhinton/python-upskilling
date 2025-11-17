@@ -18,16 +18,49 @@
 # It is guaranteed that the list represents a number that does not have leading zeros.
 
 from typing import Optional
+from collections import deque
 
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
+        
 class Solution:
+
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
-        solution = ListNode(5)
-        return solution
+
+        def queue_helper(node:Optional[ListNode]):
+            """
+            Build queue back to front for easier integer building later
+            """
+            my_deque = deque([])
+            val = node.val
+            while(node is not None): # will always have at least the first node
+                val = node.val
+                my_deque.appendleft(str(val))
+                node = node.next if node.next is not None else None
+
+            return my_deque
+
+        l1_queue, l2_queue = queue_helper(l1), self.queue_helper(l2)
+
+        l1_num, l2_num = int("".join(l1_queue)), int("".join(l2_queue))
+
+        sol_sum = l1_num + l2_num
+
+        first_node = ListNode()
+
+        for i in range(len(str(sol_sum)) - 1, -1, -1):
+            first_node
+            
+
+        # print("l1_queue", l1_queue)
+
+
+
+    
+
     
 # PLAN
 # Time complexity: O(n)
