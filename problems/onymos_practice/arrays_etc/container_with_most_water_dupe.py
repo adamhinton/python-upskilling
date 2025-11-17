@@ -16,10 +16,30 @@ from typing import List
 
 class Solution:
     def maxArea(self, height: List[int]) -> int:
-       max_area = 0
+        max_area = 0
+
+        
 
        return 0
     
+
+# PLAN
+# Time: O(n), one pass
+# Space: O(1)
+# Need: two pointers, shrinking window
+
+# max_area = 0
+
+# left, right = 0, len(height) - 1
+
+# while left < right:
+    # get current_area, left_height, right_height
+        # the min of the two heights * (right - left)
+    # max_area = max(max_area, current_area)
+    # if left_height < right_height, left++
+        # else right--
+
+# return max_area
 
 solution = Solution()
 print(solution.maxArea([1,8,6,2,5,4,8,3,7])) # 49
