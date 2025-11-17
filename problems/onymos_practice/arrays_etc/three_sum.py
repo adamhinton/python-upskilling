@@ -23,6 +23,8 @@ class Solution:
 
         for i in range(total_nums - 2):
             val = nums[i]
+            needed = 0 - val
+
             if val > 0:
                 break
 
@@ -35,11 +37,6 @@ class Solution:
             while left < right:
                 num_left = nums[left]
                 num_right = nums[right]
-
-                needed = 0 - val
-
-                if needed < val: 
-                    break
 
                 j_plus_k = num_left + num_right
 
