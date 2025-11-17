@@ -15,7 +15,7 @@ class Solution:
     def sortArray(self, nums: List[int]) -> List[int]:
 
         def recursive_helper(nums: List[int]):
-            if len(nums) > 1: # Base base, move back up tree if not
+            if len(nums) > 1: # Base 0base, move back up tree if not
                 left_arr = nums[:len(nums) // 2]
                 right_arr = nums[len(nums) // 2:]
 
