@@ -40,7 +40,7 @@ class Solution:
                     if not solution or solution[-1] < 0:
                         solution.append(ast)
                         break
-                    # continue    
+                    continue    
 
                 elif abs(ast) == abs(top_asteroid): # both explode
                     solution.pop()
@@ -48,8 +48,6 @@ class Solution:
 
                 else: # ast is smaller
                     break
-
-            
 
         return solution
     
