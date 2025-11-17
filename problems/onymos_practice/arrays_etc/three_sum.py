@@ -18,6 +18,45 @@ class Solution:
     def threeSum(self, nums: List[int]) -> List[Tuple[int, int, int]]:
         solution = []
 
+        nums.sort()
+        total_nums = len(nums)
+
+        for i in range(total_nums - 2):
+            val = nums[i]
+            if val > 0:
+                break
+
+            left = 0
+            right = total_nums - 1
+
+            while left < right:
+                num_j = nums[left]
+                num_k = nums[right]
+
+                needed = 0 - val
+
+                if needed < val:
+                    break
+
+                j_plus_k = num_j + num_k
+
+                if j_plus_k == needed:
+                    solution.append((val, num_j, num_k))
+                    # Should I be incrementing both of these?
+                    left += 1
+                    right -= 1
+                    continue
+
+                if j_plus_k < needed:
+                    left += 1
+                    continue
+
+                if j_plus_k > needed:
+                    right -= 1
+                    continue
+                
+                else:
+                    ValueError("This should never happen, you dummy!")
         return solution
     
 
@@ -52,11 +91,11 @@ class Solution:
             # right--
             # continue
 
-        # if j_plus_k is negative:
+        # if j_plus_k < needed:
             # left++
             # continue
 
-        # else: >> j_plus_k is positive
+        # else: >> j_plus_k is greater than needed
             # right--
             # continue
 
