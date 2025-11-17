@@ -33,28 +33,28 @@ class Solution:
             right = total_nums - 1
 
             while left < right:
-                num_j = nums[left]
-                num_k = nums[right]
+                num_left = nums[left]
+                num_right = nums[right]
 
                 needed = 0 - val
 
-                if needed < val:
+                if needed < val: 
                     break
 
-                j_plus_k = num_j + num_k
+                j_plus_k = num_left + num_right
 
                 if j_plus_k == needed:
-                    solution.append((val, num_j, num_k))
-                    # Should I be incrementing both of these?
+                    solution.append((val, num_left, num_right))
+
                     left += 1
                     right -= 1
+
                     # skip dupes
-                    while  nums[left] == num_j and left < right:
+                    while  nums[left] == num_left and left < right:
                         left +=1
-                    while nums[right] == num_k and right > left:
+                    while nums[right] == num_right and right > left:
                         right -=1
 
-                    
                     continue
 
                 if j_plus_k < needed:
@@ -88,15 +88,15 @@ class Solution:
     # right = total_nums - 1
 
     # while left < right:
-        # num_j = nums[left]
-        # num_k = nums[right]
+        # num_left = nums[left]
+        # num_right = nums[right]
 
         # needed = 0 - val
 
-        # j_plus_k = num_j + num_k
+        # j_plus_k = num_left + num_right
 
         # IF j_plus_k == needed:
-            # solution.append((val, num_j, num_k))
+            # solution.append((val, num_left, num_right))
             # left++ 
             # right--
             # continue
