@@ -28,3 +28,25 @@ class Solution:
     def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
         solution = ListNode(5)
         return solution
+    
+# PLAN
+# Time complexity: O(n)
+# Space complexity: O(n)
+    # Could probably do this O(1) if needed
+    # But the max LL length is 100 so seems unnecessary
+
+# Two queues:
+    # l1_queue, l2_queue
+# Could do this appending to a simple list and reverse it later, but I find this simpler
+
+# Do this for l1 and l2
+# current_node = l1
+# while current_node.val is not None:
+    # val = current_node.val
+    # l1_queue.appendleft(val)  >>> do the same with l2 and l2_queue
+
+# Do this for l1_queue and l2_queue
+    # Join in to a string, adding one digit at a time
+    # Convert string to integer
+
+# return l1 integer plus l2 integer
