@@ -23,8 +23,6 @@ class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
 
         def recursive_helper(row: int, col: int, curr_word_index: int):
-            dirs = (-1, 0, 1, 0, -1)
-
             val = board[row][col]
             needed = word[curr_word_index]
 
