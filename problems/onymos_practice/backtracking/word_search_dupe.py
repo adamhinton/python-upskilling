@@ -17,9 +17,48 @@
 
 
 from typing import List, Set, Tuple
+from itertools import pairwise
 
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
+
+        def recursive_helper(row: int, col: int, curr_word_index: int):
+            if curr_word_index == len(word):
+                return True
+            
+            val = board[row][col]
+            needed = word[curr_word_index]
+
+            if needed == val:
+                path.add((row, col)) # prevent dupe square checks
+
+                for a,b in pairwise(dirs):
+                    x, y = i+a, j+b
+                    # square exists, has the val we're looking for, and square hasn't already been seen in this run
+                    if (0<=x < m) and (0 <= y < n) and board[x][y] == word[curr_word_index + 1] and ((row, col) not in path):
+                        if recursive_helper(x, y): return True 
+
+                path.remove((row, col))
+            
+            # return False
+
+
+
+        m, n = len(board), len(board[0])
+        path: Set[Tuple[int, int]] = set() # seen coords
+        # curr_word_index = 0
+        dirs = (-1, 0, 1, 0, -1)
+
+        for i in range(m):
+            for j in range(n):
+                val = board[i][j]
+                needed = word[0]
+                if val == needed:
+                    if recursive_helper(i, j, 0) is True: return True
+
+    
+
+
         return False
 
 # PLAN:
@@ -53,7 +92,7 @@ class Solution:
 
     # if needed == val:
         # seen.add((row, col))
-        # call recursive_helper for squares orthogonal from the current square, if:
+        # call recursive_helper for squares orthogonal from the current square with curr_word_index++, if:
             # 1. They exist
             # 2. Their coordinates aren't already in `seen`
         # return True if any of the above are True; False if not
