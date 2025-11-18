@@ -1,11 +1,8 @@
-# Get pairwise tuples of four directions
 # DIRS = [(-1,0), (0,1), (1,0), (0,-1)]
-
 # for a, b in DIRS:
 #     x, y = row + a, col + b
-#     if 0 <= x < m and 0 <= y < n and (x, y) not in path:
-#         if recursive_helper(x, y, curr_word_index + 1):
-#             return True
+#     if 0 <= x < m and 0 <= y < n and (other conditions here):
+#          # call recursive_helper
             
 # Stuff to try:
     # work backwards
