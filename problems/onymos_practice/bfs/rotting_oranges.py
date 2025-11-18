@@ -24,6 +24,12 @@ class Solution:
             FRESH = 1
             ROTTEN = 2
 
+    num_fresh_oranges = 0
+    num_minutes = 0
+
+
+    return num_minutes if num_fresh_oranges == 0 else -1
+
 
 # PLAN
 # Time: O(n)
