@@ -1,3 +1,7 @@
+# This has pretty miserable runtime. Next time I'll try to avoid that by:
+    # Using a queue of coords instead of a set
+    # 
+
 # 994. Rotting Oranges
 # Medium
 # https://leetcode.com/problems/rotting-oranges/description/
@@ -12,8 +16,9 @@
 # Return the minimum number of minutes that must elapse until no cell has a fresh orange. 
 # If this is impossible, return -1.
 
-from typing import List, Tuple, Set
+from typing import List, Tuple, Deque
 from enum import Enum
+from collections import deque
 
 class Solution:
     def orangesRotting(self, grid: List[List[int]]) -> int:
@@ -22,7 +27,7 @@ class Solution:
             FRESH = 1
             ROTTEN = 2
 
-        rotting_orange_coords: Set[Tuple[int, int]] = set()
+        rotting_orange_coords: Deque[Tuple[int, int]]= deque([])
         num_fresh_oranges = 0
         num_minutes = 0
         m, n = len(grid), len(grid[0])
@@ -35,19 +40,18 @@ class Solution:
                 if val == Orange.FRESH.value:
                     num_fresh_oranges += 1
                 elif val == Orange.ROTTEN.value:
-                    rotting_orange_coords.add((i, j))
+                    rotting_orange_coords.append((i, j))
 
         if num_fresh_oranges == 0: return 0
 
-        if not bool(rotting_orange_coords): # no rottens to rot the fresh ones
+        if len(rotting_orange_coords) == 0: # no rottens to rot the fresh ones
             return -1
         
         # Stops if there are no rottens created after a round
-        while(bool(rotting_orange_coords) and num_fresh_oranges > 0):
-            next_rotting_orange_set: Set[Tuple[int, int]] = set()
+        while(len(rotting_orange_coords) > 0) and num_fresh_oranges > 0:
             num_minutes += 1
-            for _, coords in enumerate(rotting_orange_coords):
-                row, col = coords
+            for _ in range(len(rotting_orange_coords)):
+                row, col = rotting_orange_coords.popleft()
                 # Convert any orthogonally-adjacent freshes to rotten
                 for a, b in DIRS:
                     x, y = row + a, col + b
@@ -55,8 +59,7 @@ class Solution:
                         # Convert to rotten
                         grid[x][y] = Orange.ROTTEN.value
                         num_fresh_oranges -= 1
-                        next_rotting_orange_set.add((x, y))
-            rotting_orange_coords = next_rotting_orange_set
+                        rotting_orange_coords.append((x, y))
             
         return num_minutes if num_fresh_oranges == 0 else -1
 
