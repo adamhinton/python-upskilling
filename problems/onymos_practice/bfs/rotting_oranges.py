@@ -26,6 +26,7 @@ class Solution:
         num_minutes = 0
 
 
+
         return num_minutes if num_fresh_oranges == 0 else -1
 
 
@@ -64,3 +65,7 @@ class Solution:
     # return num_minutes
           
 
+solution = Solution()
+print(solution.orangesRotting([[2,1,1],[1,1,0],[0,1,1]])) # 4
+print(solution.orangesRotting([[2,1,1],[0,1,1],[1,0,1]])) # -1
+print(solution.orangesRotting([[0,2]])) # 0
