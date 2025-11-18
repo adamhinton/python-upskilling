@@ -25,11 +25,13 @@ class Solution:
         def recursive_helper(row: int, col: int, curr_word_index: int):
             dirs = (-1, 0, 1, 0, -1)
 
-            if curr_word_index == len(word):
-                return True
-            
             val = board[row][col]
             needed = word[curr_word_index]
+
+
+            if val== needed and curr_word_index == len(word)-1:
+                return True
+            
 
             if needed == val:
                 path.add((row, col)) # prevent dupe square checks
@@ -103,4 +105,4 @@ solution = Solution()
 # print(solution.exist([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "ABCCED")) # True
 # print(solution.exist([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "SEE")) # True
 # print(solution.exist([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "ABCB")) # False
-print(solution.exist([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "a")) # True
+print(solution.exist([["a"]], "a")) # True
