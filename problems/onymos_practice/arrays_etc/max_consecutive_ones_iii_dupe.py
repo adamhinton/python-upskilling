@@ -23,16 +23,17 @@ class Solution:
             running_num_zeros += 1 # we'll deal with nums[right] inside the loop
 
         while right < len(nums):
-            num_left, num_right = nums[left], nums[right]
 
-            if num_right == 0:
+            if nums[right] == 0:
                 running_num_zeros += 1
 
             while running_num_zeros > k:
-                if num_left == 0:
+                if nums[left] == 0:
                     running_num_zeros -= 1
                 left+=1
-                num_left = nums[left]
+                # if right == left:
+                #     right += 1
+                # break
 
             # Now we know it's a valid window
             current_length = right - left + 1
@@ -41,14 +42,6 @@ class Solution:
 
         return max_length
 
-
-
-
-        
-        
-
-
-        return max_length
     
 # PLAN:
 # Time complexity: O(n), one pass
@@ -77,5 +70,6 @@ class Solution:
 
     
 solution = Solution()
-print(solution.longestOnes([1,1,1,0,0,0,1,1,1,1,0], k=2)) # 6
-print(solution.longestOnes([0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1], k=3)) # 10
+# print(solution.longestOnes([1,1,1,0,0,0,1,1,1,1,0], k=2)) # 6
+# print(solution.longestOnes([0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1], k=3)) # 10
+print(solution.longestOnes([0,0,1,1,1,0,0], k=0)) # ?
