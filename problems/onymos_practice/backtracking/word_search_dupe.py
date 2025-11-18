@@ -23,6 +23,8 @@ class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
 
         def recursive_helper(row: int, col: int, curr_word_index: int):
+            dirs = (-1, 0, 1, 0, -1)
+
             if curr_word_index == len(word):
                 return True
             
@@ -33,10 +35,9 @@ class Solution:
                 path.add((row, col)) # prevent dupe square checks
 
                 for a,b in pairwise(dirs):
-                    x, y = i+a, j+b
-                    # square exists, has the val we're looking for, and square hasn't already been seen in this run
-                    if (0<=x < m) and (0 <= y < n) and board[x][y] == word[curr_word_index + 1] and ((row, col) not in path):
-                        if recursive_helper(x, y): return True 
+                    x, y = row+a, col+b
+                    if (0<=x < m) and (0 <= y < n) and ((x, y) not in path):
+                        if recursive_helper(x, y, curr_word_index + 1): return True 
 
                 path.remove((row, col))
             
@@ -47,7 +48,6 @@ class Solution:
         m, n = len(board), len(board[0])
         path: Set[Tuple[int, int]] = set() # seen coords
         # curr_word_index = 0
-        dirs = (-1, 0, 1, 0, -1)
 
         for i in range(m):
             for j in range(n):
@@ -57,8 +57,6 @@ class Solution:
                     if recursive_helper(i, j, 0) is True: return True
 
     
-
-
         return False
 
 # PLAN:
@@ -102,6 +100,7 @@ class Solution:
 
 
 solution = Solution()
-print(solution.exist([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "ABCCED")) # True
-print(solution.exist([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "SEE")) # True
-print(solution.exist([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "ABCB")) # False
+# print(solution.exist([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "ABCCED")) # True
+# print(solution.exist([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "SEE")) # True
+# print(solution.exist([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "ABCB")) # False
+print(solution.exist([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "a")) # True
