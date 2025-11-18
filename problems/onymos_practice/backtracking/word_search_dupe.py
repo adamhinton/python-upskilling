@@ -10,11 +10,56 @@
 #   where adjacent cells are horizontally or vertically neighboring. 
 # The same letter cell may not be used more than once.
 
-from typing import List
+# m == board.length
+# n = board[i].length
+# 1 <= m, n <= 6
+# 1 <= word.length <= 15
+
+
+from typing import List, Set, Tuple
 
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
         return False
+
+# PLAN:
+# Time: Something nasty; O(n * m * len(word)) or something like that
+# Space: O(n)
+# NEED:
+    # Set; path of tuples -- the seen coordinates for the current run
+        # Coordinates get removed as you go back up the recursion tree
+    # Recursion
+    # Backtracking
+    #DFS
+
+# m = len(board)
+# n = len(board[0])
+# path: Set[Tuple[int, int]] = set() # current seen coordinates
+
+# for i in range(m):
+    # for j in range(n):
+        # val = board[i][j]
+        # needed = word[0]
+        # if val == needed:
+            # if recursive_helper(i, j, 0) return True
+
+# def recursive_helper(row: int, col: int, curr_word_index: int):
+    # if curr_word_index == len(word): # word complete
+        # return True
+
+    # val = board[row][col]
+
+    # needed = word[curr_word_index]
+
+    # if needed == val:
+        # seen.add((row, col))
+        # call recursive_helper for squares orthogonal from the current square, if:
+            # 1. They exist
+            # 2. Their coordinates aren't already in `seen`
+        # return True if any of the above are True; False if not
+
+
+# return False, all possibilities exhausted
 
 
 solution = Solution()
