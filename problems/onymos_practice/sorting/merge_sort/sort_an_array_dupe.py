@@ -14,8 +14,44 @@ from typing import List
 
 class Solution:
     def sortArray(self, nums: List[int]) -> List[int]:
-        
 
+        def recursive_helper(nums):
+            total_nums = len(nums)
+
+            if total_nums > 1: # base case, if 1 move up tree
+                left_nums = nums[:total_nums//2]
+                right_nums = nums[total_nums//2:]
+
+                recursive_helper(left_nums)
+                recursive_helper(right_nums)
+
+                # Now the arrays are sorted
+
+                # k is index in nums
+                left_index, right_index, k = 0, 0, 0 
+
+                while left_index < len(left_nums) and right_index < len(right_nums):
+                    if left_nums[left_index] <= left_nums[right_index]:
+                        nums[k] = left_nums[left_index]
+                        left_index += 1
+                        k += 1
+
+                    else: # right val is strictly less
+                        nums[k] = right_nums[right_index]
+                        right_index += 1
+                        k += 1
+
+                    while left_index < len(left_nums):
+                        nums[k] = left_nums[left_index]
+                        left_index += 1
+                        k += 1
+                    
+                    while right_index < len(right_nums):
+                        nums[k] = right_nums[right_index]
+                        right_index += 1
+                        k += 1
+
+        recursive_helper(nums)
 
         return nums
 
