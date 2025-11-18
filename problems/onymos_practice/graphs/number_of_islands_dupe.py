@@ -34,25 +34,28 @@ class Solution:
     # Time: Something nasty, m * n * average length of islands I think
     # Space: O(1)
 
+    # num_islands = 0
+    # num_rows, num_cols = len(grid), len(grid[0])
+
     # Broad plan:
-        # for each item, if it is 1,
-            # Change it to 0, num_islands ++
-            # for each square up, left, down, right (if they exist)
-                # call recursive helper(row, col) 
-        
-        # recursive helper(row, col):
-                # This sets a square's value to 0, then searches for more connecting land and sets those to 0 too.
-                # Should recurse all the way through an island then stop.
-                # Converts land from 1 to 0 so it doesn't get visited again.
-            # if val is 0, return
-            # if val == 1:
-                # change val to 0
-                # for each orthogonal square (that exist):
-                    # recursive helper on that orthogonal square
+        # for i in range(num_rows):
+            # for j in range (num_cols):
+                # if val is 0: continue
+                # if it's 1, Change it to 0, num_islands ++
+                # for each square up, left, down, right (if they exist)
+                    # If the square exists and its value is 1:
+                        # recursive_helper on that row and col
 
-# num_islands = 0
+            
+            # recursive helper(row, col):
+                    # This sets a square's value to 0, then searches for more connecting land and sets those to 0 too.
+                    # Should recurse all the way through an island then stop.
+                    # Converts land from 1 to 0 so it doesn't get visited again.
+                # if val is 0, return >>> may be redundant
+                # if val == 1:
+                    # change val to 0
+                    # for each orthogonal square (that exist):
+                        # recursive helper on that orthogonal square
 
 
-
-
-# return num_islands
+    # return num_islands
