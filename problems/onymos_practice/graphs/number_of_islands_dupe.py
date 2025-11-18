@@ -28,6 +28,29 @@ class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
         num_islands = 0
 
+        dirs = (-1, 0, 1, 0, -1)    
+
+        num_rows, num_cols = len(grid), len(grid[0])
+
+        def recursive_helper(row, col):
+            grid[row][col] = "0"
+
+            for a,b in pairwise(dirs):
+                x, y = row+a, col+b
+                if (0<=x < num_rows) and (0 <= y < num_cols) and grid[x][y] == "1":
+                    recursive_helper(x, y)
+        
+        for i in range(num_rows):
+            for j in range(num_cols):
+                val = grid[i][j]
+                if val == "0" : continue # already water
+
+                # now we know it's land "1"
+                num_islands += 1 # only do that on the first land we find in an island
+                # The recursive helper converts it to water
+
+                recursive_helper(i, j)
+
         return num_islands
     
 # PLAN:
@@ -59,3 +82,18 @@ class Solution:
 
 
     # return num_islands
+
+
+solution = Solution()
+print(solution.numIslands([
+  ["1","1","1","1","0"],
+  ["1","1","0","1","0"],
+  ["1","1","0","0","0"],
+  ["0","0","0","0","0"]
+])) # 1
+print(solution.numIslands([
+  ["1","1","0","0","0"],
+  ["1","1","0","0","0"],
+  ["0","0","1","0","0"],
+  ["0","0","0","1","1"]
+])) # 3
