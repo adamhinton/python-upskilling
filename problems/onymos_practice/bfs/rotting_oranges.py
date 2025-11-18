@@ -12,7 +12,7 @@
 # Return the minimum number of minutes that must elapse until no cell has a fresh orange. 
 # If this is impossible, return -1.
 
-from typing import List, Tuple
+from typing import List, Tuple, Set
 from enum import Enum
 
 class Solution:
@@ -22,10 +22,23 @@ class Solution:
             FRESH = 1
             ROTTEN = 2
 
+        rotting_orange_coords: Set[Tuple[int, int]] = set()
         num_fresh_oranges = 0
         num_minutes = 0
+        m, n = len(grid), len(grid[0])
 
+        for i in range(m):
+            for j in range(n):
+                val = grid[i][j]
+                if val == Orange.FRESH.value:
+                    num_fresh_oranges += 1
+                elif val == Orange.ROTTEN.value:
+                    rotting_orange_coords.add((i, j))
 
+        if num_fresh_oranges == 0: return 0
+
+        if not bool(rotting_orange_coords): # no rottens to rot the fresh ones
+            return -1
 
         return num_minutes if num_fresh_oranges == 0 else -1
 
