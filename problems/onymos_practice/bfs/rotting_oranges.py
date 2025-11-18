@@ -1,5 +1,3 @@
-https://comcast-livechat.sprinklr.com/?landingScreen=CASE_6908769f4504236216299a64&OTT=69089023c22fc72301bd1875
-
 # 994. Rotting Oranges
 # Medium
 # https://leetcode.com/problems/rotting-oranges/description/
@@ -24,11 +22,11 @@ class Solution:
             FRESH = 1
             ROTTEN = 2
 
-    num_fresh_oranges = 0
-    num_minutes = 0
+        num_fresh_oranges = 0
+        num_minutes = 0
 
 
-    return num_minutes if num_fresh_oranges == 0 else -1
+        return num_minutes if num_fresh_oranges == 0 else -1
 
 
 # PLAN
