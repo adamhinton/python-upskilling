@@ -98,5 +98,5 @@ class Solution:
 
 solution = Solution()
 print(solution.orangesRotting([[2,1,1],[1,1,0],[0,1,1]])) # 4
-# print(solution.orangesRotting([[2,1,1],[0,1,1],[1,0,1]])) # -1
-# print(solution.orangesRotting([[0,2]])) # 0
+print(solution.orangesRotting([[2,1,1],[0,1,1],[1,0,1]])) # -1
+print(solution.orangesRotting([[0,2]])) # 0
