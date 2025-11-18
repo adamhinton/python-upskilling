@@ -43,7 +43,7 @@ class Solution:
             return -1
         
         # Stops if there are no rottens created after a round
-        while(bool(rotting_orange_coords)):
+        while(bool(rotting_orange_coords) and num_fresh_oranges > 0):
             next_rotting_orange_set: Set[Tuple[int, int]] = set()
             num_minutes += 1
             for _, coords in enumerate(rotting_orange_coords):
@@ -98,5 +98,5 @@ class Solution:
 
 solution = Solution()
 print(solution.orangesRotting([[2,1,1],[1,1,0],[0,1,1]])) # 4
-print(solution.orangesRotting([[2,1,1],[0,1,1],[1,0,1]])) # -1
-print(solution.orangesRotting([[0,2]])) # 0
+# print(solution.orangesRotting([[2,1,1],[0,1,1],[1,0,1]])) # -1
+# print(solution.orangesRotting([[0,2]])) # 0
