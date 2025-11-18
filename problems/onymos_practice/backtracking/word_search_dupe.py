@@ -36,11 +36,13 @@ class Solution:
             if needed == val:
                 path.add((row, col)) # prevent dupe square checks
 
-                for a,b in pairwise(dirs):
-                    x, y = row+a, col+b
-                    if (0<=x < m) and (0 <= y < n) and ((x, y) not in path):
-                        if recursive_helper(x, y, curr_word_index + 1): return True 
+                DIRS = [(-1,0), (0,1), (1,0), (0,-1)]
 
+                for a, b in DIRS:
+                    x, y = row + a, col + b
+                    if 0 <= x < m and 0 <= y < n and (x, y) not in path:
+                        if recursive_helper(x, y, curr_word_index + 1):
+                            return True
                 path.remove((row, col))
             
             # return False
@@ -102,7 +104,7 @@ class Solution:
 
 
 solution = Solution()
-# print(solution.exist([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "ABCCED")) # True
-# print(solution.exist([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "SEE")) # True
-# print(solution.exist([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "ABCB")) # False
+print(solution.exist([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "ABCCED")) # True
+print(solution.exist([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "SEE")) # True
+print(solution.exist([["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], "ABCB")) # False
 print(solution.exist([["a"]], "a")) # True
