@@ -26,6 +26,8 @@ class Solution:
         num_fresh_oranges = 0
         num_minutes = 0
         m, n = len(grid), len(grid[0])
+        DIRS = [(-1,0), (0,1), (1,0), (0,-1)]
+
 
         for i in range(m):
             for j in range(n):
@@ -39,7 +41,23 @@ class Solution:
 
         if not bool(rotting_orange_coords): # no rottens to rot the fresh ones
             return -1
-
+        
+        # Stops if there are no rottens created after a round
+        while(bool(rotting_orange_coords)):
+            next_rotting_orange_set: Set[Tuple[int, int]] = set()
+            num_minutes += 1
+            for _, coords in enumerate(rotting_orange_coords):
+                row, col = coords
+                # Convert any orthogonally-adjacent freshes to rotten
+                for a, b in DIRS:
+                    x, y = row + a, col + b
+                    if 0 <= x < m and 0 <= y < n and grid[x][y] == Orange.FRESH.value:
+                        # Convert to rotten
+                        grid[x][y] = Orange.ROTTEN.value
+                        num_fresh_oranges -= 1
+                        next_rotting_orange_set.add((x, y))
+            rotting_orange_coords = next_rotting_orange_set
+            
         return num_minutes if num_fresh_oranges == 0 else -1
 
 
