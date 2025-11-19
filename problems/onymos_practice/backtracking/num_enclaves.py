@@ -13,7 +13,44 @@ from typing import List
 class Solution:
     def numEnclaves(self, grid: List[List[int]]) -> int:
         num_enclaves = 0
+
+        m, n = len(grid), len(grid[0])
+
+        DIRS = [(-1,0), (0,1), (1,0), (0,-1)]
+
+        def recursive_helper(row, col):
+            # val = grid[row][col]
+            # if val == 0: return # maybe do this before calling
+
+            grid[row][col] = 0
+
+            is_border_square = (row == 0 or col == 0 or row == m-1 or col == n-1)
+
+            if is_border_square: is_enclave = False
+
+            for a, b in DIRS:
+                x, y = row + a, col + b
+                if (0 <= x < m and 0 <= y < n) and grid[x][y] == 1:
+                    recursive_helper(x, y)
+
+
+
+
+        for i in range(m):
+            for j in range(n):
+                val = grid[i][j]
+                if val == 0: continue
+
+                # now we know it's land
+                is_enclave = True # helper will set this to false if it finds a border square
+                recursive_helper(i, j)
+
+                if is_enclave == True: num_enclaves += 1
+
+
+
         return num_enclaves
+    
     
 # PLAN
 # Time: O(m * n * ... length of average island, I think)
