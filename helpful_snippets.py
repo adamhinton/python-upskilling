@@ -53,3 +53,36 @@ def binary_search_template(arr, target):
     # the first element greater than or equal to 'target',
     # or 'len(arr)' if all elements are less than 'target'.
     return left
+
+
+# Outside squares
+def get_outside_squares(rows, columns):
+    """
+    Enumerates all (row, column) coordinates on the outside of a grid.
+
+    Args:
+        rows (int): The number of rows in the grid.
+        columns (int): The number of columns in the grid.
+
+    Returns:
+        list: A list of tuples representing the coordinates of the outside squares.
+    """
+    if rows <= 0 or columns <= 0:
+        return []
+    
+    outside_squares = [
+        (r, c)
+        for r in range(rows)
+        for c in range(columns)
+        if r == 0 or r == rows - 1 or c == 0 or c == columns - 1
+    ]
+    return outside_squares
+
+# Example outside squares usage
+R = 4
+C = 5
+outside_coords = get_outside_squares(R, C)
+print(f"Outside squares of a {R}x{C} grid:")
+for coord in outside_coords:
+    print(coord, end=" ")
+print(f"\nTotal outside squares: {len(outside_coords)}")
