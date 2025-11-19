@@ -51,6 +51,12 @@ solution = Solution()
 # print(solution.solve("]}}}}}}[]")) # False
 # print(solution.solve("([{[{((({{[([[]])]}})()))}]}])")) # True
 
+# Regex solution:
+    # No
+    # can't do that kind of pattern matching
+    # finite memory
+    
+
 # Edge cases:
     # Empty string - Check
     # Starts with close paren
