@@ -36,7 +36,7 @@ class Solution:
             new_val = fruits[right]
             tracker[new_val] += 1
 
-            if new_val not in (first_val, second_val):
+            if first_val != second_val and  new_val not in (first_val, second_val):
                 while tracker[first_val] > 0:
                     tracker[first_val] -= 1
                     left += 1
@@ -92,4 +92,5 @@ solution = Solution()
 # print(solution.totalFruit([1,2,1])) # 3
 # print(solution.totalFruit([0,1,2,2])) # 3
 # print(solution.totalFruit([1,2,3,2,2])) # 4
-print(solution.totalFruit([3,3,3,1,2,1,1,2,3,3,4])) # 6 I think
+# print(solution.totalFruit([3,3,3,1,2,1,1,2,3,3,4])) # 6 I think
+print(solution.totalFruit([0,0,1,1])) # 4
