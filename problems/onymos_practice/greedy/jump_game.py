@@ -15,7 +15,16 @@ from typing import List
 
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
-        return False
+        goal = len(nums) - 1 # last index
+        for i in range(goal, -1, -1):
+            val = nums[i]
+            needed_steps = goal - i
+            if val >= needed_steps:
+                goal = i
+        
+        return goal == 0
+
+        
     
 solution = Solution()
 print(solution.canJump([2,3,1,1,4])) # True
