@@ -45,9 +45,63 @@
     # empty:no
     # Negative: no
 
+class ListNode: 
+    def __init__(self, val):
+        self.val = val
+        self.next = None
+
+from collections import deque
+
 class Solution:
-    def solve(self, input):
-        # plan goes here
-        return
+    def solve(self, node1: ListNode, node2: ListNode):
+        arr1, arr2 = deque([]), deque([])
+        
+        node_1 = node1
+        node_2 = node2
+        while(node_1.val is not None):
+            arr1.appendleft(str(node_1.val))
+        
+        while(node_2.val):
+            arr2.appendleft(str(node_2.val))
+
+        int_1 = int("".join(arr1))
+        int_2 = int("".join(arr2))
+
+        sum = int_1 + int_2
+
+        # loop over sum, appendlefting each int to a linkedlist
+        sum_string = str(sum)
+        node = ListNode(sum[-1])
+        solution = node # saving a reference to node
+        for i in range(len(sum_string)-1, 0, -1):
+            new_node = ListNode(int(sum_string[i]))
+            node.next = new_node
+            node = new_node
+
+
+        return solution
+
+
+# Input: l1 = [2,4,3], l2 = [5,6,4]
+# Output: [7,0,8]
+
+node_1 = ListNode(2)
+node_2 = ListNode(4)
+node_3 = ListNode(3)
+node_2.next = node_3
+node_1.next = node_2
+
+node_4 = ListNode(5)
+node_5 = ListNode(6)
+node_6 = ListNode(4)
+node_4.next = node_5
+node_5.next = node_6
+
+solution = Solution()
+print(solution.solve(node_1, node_2))
+
     
 # Linked lists
+
+
+    
