@@ -22,75 +22,31 @@ from collections import defaultdict
 
 class Solution:
     def totalFruit(self, fruits: List[int]) -> int:
-        if len(fruits) <= 2: return len(fruits)
+        from collections import defaultdict
 
-        max_fruits = 0
-        left, right = 0, 1
-        tracker = defaultdict(int)
+        left = 0
+        counts = defaultdict(int)
+        max_len = 0
 
-        first_val = fruits[left]
-        second_val = fruits[right]
-        tracker[first_val] += 1
+        for right in range(len(fruits)):
+            val = fruits[right]
+            counts[val] += 1
 
-        while right < len(fruits):
-            new_val = fruits[right]
-            tracker[new_val] += 1
+            while len(counts) > 2:
+                left_val = fruits[left]
+                counts[left_val] -= 1
+                if counts[left_val] == 0:
+                    del counts[left_val]
+                left += 1
 
-            if first_val != second_val and  new_val not in (first_val, second_val):
-                while tracker[first_val] > 0:
-                    tracker[first_val] -= 1
-                    left += 1
+            max_len = max(max_len, right - left + 1)
 
-                first_val, second_val = second_val, new_val
-
-            curr_list = fruits[left: right + 1] 
-            print("TODO delete")
-            # Now we know it's a valid set
-            current_max_fruits = tracker[first_val] + tracker[second_val] if second_val != first_val else tracker[first_val]
-
-            max_fruits = max(current_max_fruits, max_fruits)
-
-            right += 1
-
-        return max_fruits
+        return max_len
     
-# PLAN
-# Time: O(n)
-# Space: O(n)
-# Need:
-    # Two pointers sliding window
-    # Hash map
-
-# if fruits is length 1 or 2, return len(fruits)
-
-# max_fruits = 0
-# left, right = 0, 1
-# tracker = defaultdict(int)
-
-# first_val = fruits[left] # first fruit type
-# second_val = fruits[right] # second fruit type
-
-# while right < len(fruits): # left should never come to equal right
-    # new_val = fruits[right]
-    # increment tracker for new val
-    # if new_val != first val and != second val:
-        # left++ until no more instances of first_val;
-            # decrementing tracker[first_val] every time
-        # right val = new val
-        # left val = old right val
-
-    # now we know it's a valid set
-    # current_max_fruits = tracker[left val] + tracker[right val]
-
-    # max_fruits = max(current max and max_fruits)
-    # right++
-
-
-# return max_fruits
-
 solution = Solution()
-# print(solution.totalFruit([1,2,1])) # 3
-# print(solution.totalFruit([0,1,2,2])) # 3
-# print(solution.totalFruit([1,2,3,2,2])) # 4
-# print(solution.totalFruit([3,3,3,1,2,1,1,2,3,3,4])) # 6 I think
+print(solution.totalFruit([1,2,1])) # 3
+print(solution.totalFruit([0,1,2,2])) # 3
+print(solution.totalFruit([1,2,3,2,2])) # 4
+print(solution.totalFruit([3,3,3,1,2,1,1,2,3,3,4])) # 5
 print(solution.totalFruit([0,0,1,1])) # 4
+print(solution.totalFruit([1,0,1,4,1,4,1,2,3])) # 5
