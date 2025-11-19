@@ -26,6 +26,31 @@ class Solution:
 
         max_fruits = 0
         left, right = 0, 1
+        tracker = defaultdict(int)
+
+        first_val = fruits[left]
+        second_val = fruits[right]
+        tracker[first_val] += 1
+
+        while right < len(fruits):
+            new_val = fruits[right]
+            tracker[new_val] += 1
+
+            if new_val not in (first_val, second_val):
+                while tracker[first_val] > 0:
+                    tracker[left] -= 1
+                    left += 1
+
+                first_val, second_val = second_val, new_val
+
+            # Now we know it's a valid set
+            current_max_fruits = tracker[first_val] + tracker[second_val]
+
+            max_fruits = max(current_max_fruits, max_fruits)
+
+
+
+            right += 1
 
         return max_fruits
     
