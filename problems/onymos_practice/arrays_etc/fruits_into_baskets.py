@@ -25,3 +25,35 @@ class Solution:
         max_fruits = 0
 
         return max_fruits
+    
+# PLAN
+# Time: O(n)
+# Space: O(n)
+# Need:
+    # Two pointers sliding window
+    # Hash map
+
+# max_fruits = 0
+# left, right = 0, 1
+# tracker = defaultdict(int)
+
+# first_val = fruits[left] # first fruit type
+# second_val = fruits[right] # second fruit type
+
+# while right < len(fruits): # left should never come to equal right
+    # new_val = fruits[right]
+    # increment tracker for new val
+    # if new_val != first val and != second val:
+        # left++ until no more instances of first_val;
+            # decrementing tracker[first_val] every time
+        # right val = new val
+        # left val = old right val
+
+    # now we know it's a valid set
+    # current_max_fruits = tracker[left val] + tracker[right val]
+
+    # max_fruits = max(current max and max_fruits)
+    # right++
+
+
+# return max_fruits
