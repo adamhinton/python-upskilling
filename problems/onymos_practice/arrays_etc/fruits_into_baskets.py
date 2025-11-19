@@ -22,7 +22,10 @@ from collections import defaultdict
 
 class Solution:
     def totalFruit(self, fruits: List[int]) -> int:
+        if len(fruits) <= 2: return len(fruits)
+
         max_fruits = 0
+        left, right = 0, 1
 
         return max_fruits
     
@@ -59,3 +62,8 @@ class Solution:
 
 
 # return max_fruits
+
+solution = Solution()
+print(solution.totalFruit([1,2,1])) # 3
+print(solution.totalFruit([0,1,2,2])) # 3
+print(solution.totalFruit([1,2,3,2,2])) # 4
