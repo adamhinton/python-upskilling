@@ -38,17 +38,17 @@ class Solution:
 
             if new_val not in (first_val, second_val):
                 while tracker[first_val] > 0:
-                    tracker[left] -= 1
+                    tracker[first_val] -= 1
                     left += 1
 
                 first_val, second_val = second_val, new_val
 
+            curr_list = fruits[left: right + 1] 
+            print("TODO delete")
             # Now we know it's a valid set
-            current_max_fruits = tracker[first_val] + tracker[second_val]
+            current_max_fruits = tracker[first_val] + tracker[second_val] if second_val != first_val else tracker[first_val]
 
             max_fruits = max(current_max_fruits, max_fruits)
-
-
 
             right += 1
 
@@ -89,6 +89,7 @@ class Solution:
 # return max_fruits
 
 solution = Solution()
-print(solution.totalFruit([1,2,1])) # 3
-print(solution.totalFruit([0,1,2,2])) # 3
-print(solution.totalFruit([1,2,3,2,2])) # 4
+# print(solution.totalFruit([1,2,1])) # 3
+# print(solution.totalFruit([0,1,2,2])) # 3
+# print(solution.totalFruit([1,2,3,2,2])) # 4
+print(solution.totalFruit([3,3,3,1,2,1,1,2,3,3,4])) # 6 I think
