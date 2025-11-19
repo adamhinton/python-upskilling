@@ -21,17 +21,25 @@ class Solution:
         def recursive_helper(row, col):
             # val = grid[row][col]
             # if val == 0: return # maybe do this before calling
+            land_cell_count = 1
 
             grid[row][col] = 0
 
             is_border_square = (row == 0 or col == 0 or row == m-1 or col == n-1)
+            touches_border = False
 
-            if is_border_square: is_enclave = False
+            if is_border_square: touches_border = True
 
             for a, b in DIRS:
                 x, y = row + a, col + b
                 if (0 <= x < m and 0 <= y < n) and grid[x][y] == 1:
-                    recursive_helper(x, y)
+                    sub_touches_border, current_num_land_cells = recursive_helper(x, y)
+                    land_cell_count += current_num_land_cells
+                    if sub_touches_border: touches_border = True
+
+            return (touches_border, land_cell_count)
+
+            
 
 
 
@@ -43,9 +51,10 @@ class Solution:
 
                 # now we know it's land
                 is_enclave = True # helper will set this to false if it finds a border square
-                recursive_helper(i, j)
 
-                if is_enclave == True: num_enclaves += 1
+                touches_border, current_num_land_cells = recursive_helper(i, j)
+
+                if touches_border == False: num_enclaves += current_num_land_cells
 
 
 
