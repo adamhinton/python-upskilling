@@ -54,6 +54,8 @@ def binary_search_template(arr, target):
     # or 'len(arr)' if all elements are less than 'target'.
     return left
 
+# keywords: is_border_square, edge, outside, perimeter
+# row == 0 or col == 0 or row == m-1 or col == n-1
 
 # Outside squares
 def get_outside_squares(rows, columns):
