@@ -28,6 +28,34 @@ class Solution:
             ")": "(",
             "]": "[",
         }
+
+        for char in s:
+            if char not in parens: # open paren
+                tracker.append(char)
+                continue
+            # now we know it's a closer 
+            if not tracker: return False
+            next_val = tracker.pop()
+            if parens[char] != next_val:
+                return False
+            
+        return True
+    
+solution = Solution()
+# print(solution.solve("()")) # True
+# print(solution.solve("()[]{}")) # True
+# print(solution.solve("(]")) # False
+# print(solution.solve("(]")) # False
+# print(solution.solve("")) # False
+# print(solution.solve("]")) # False
+# print(solution.solve("]}}}}}}[]")) # False
+# print(solution.solve("([{[{((({{[([[]])]}})()))}]}])")) # True
+
+# Edge cases:
+    # Empty string - Check
+    # Starts with close paren
+
+
         
     
 # PLAN:
