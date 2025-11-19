@@ -33,6 +33,8 @@ class Solution:
     # Two pointers sliding window
     # Hash map
 
+# if fruits is length 1 or 2, return len(fruits)
+
 # max_fruits = 0
 # left, right = 0, 1
 # tracker = defaultdict(int)
