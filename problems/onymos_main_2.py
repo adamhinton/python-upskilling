@@ -58,11 +58,13 @@ class Solution:
         
         node_1 = node1
         node_2 = node2
-        while(node_1.val is not None):
+        while(node_1 is not None):
             arr1.appendleft(str(node_1.val))
+            node_1 = node_1.next
         
-        while(node_2.val):
+        while(node_2 is not None):
             arr2.appendleft(str(node_2.val))
+            node_2 = node_2.next
 
         int_1 = int("".join(arr1))
         int_2 = int("".join(arr2))
@@ -71,13 +73,19 @@ class Solution:
 
         # loop over sum, appendlefting each int to a linkedlist
         sum_string = str(sum)
-        node = ListNode(sum[-1])
+        print(sum_string)
+        node = ListNode(sum_string[-1])
         solution = node # saving a reference to node
-        for i in range(len(sum_string)-1, 0, -1):
+        for i in range(len(sum_string)-2, -1, -1):
             new_node = ListNode(int(sum_string[i]))
             node.next = new_node
             node = new_node
 
+        # print(solution.val)
+        node_sol = solution
+        while(node_sol is not None):
+            print(node_sol.val)
+            node_sol = node_sol.next
 
         return solution
 
@@ -98,7 +106,7 @@ node_4.next = node_5
 node_5.next = node_6
 
 solution = Solution()
-print(solution.solve(node_1, node_2))
+print(solution.solve(node_1, node_4))
 
     
 # Linked lists
