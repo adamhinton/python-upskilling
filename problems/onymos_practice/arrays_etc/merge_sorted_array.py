@@ -20,44 +20,24 @@ class Solution:
         Do not return anything, modify nums1 in-place instead.
         """
 
-        i, j = m-1, n - 1
-        write_index = m + n - 1 # end of nums1
+        i, j = m - 1, n - 1
+        write_index = m + n -1
 
-        while j>= 0:
-            val_1 = nums1[i]
-            val_2 = nums2[j]
+        while j >= 0: # if j has run out, all remaining elements in n1 are smaller than all elements in n2
+            val1 = nums1[i]
+            val2 = nums2[j]
 
-            if i>=0 and val_1 > val_2:
-                nums1[write_index] = val_1
+            if i >= 0 and val1 > val2:
+                nums1[write_index] = val1
                 i -= 1
 
-            else: # val2 is greater or equal    
-                nums1[write_index] = val_2
-                j -= 1
+            else: # val2 is greater or equal
+                nums1[write_index] = val2
+                j-= 1
 
             write_index -= 1
-        
-        return nums1
-            
 
-    # i, j = m - 1, n - 1
-    # write_index = m + n - 1
 
-    # while j > 0:
-        # val_2 = nums2[j]
-        # val_1 = nums1[i]
-
-        # if val2 > val1:
-            # nums1[write_index] = val2
-            # j--
-            # write_index--
-        
-        # else: >> val1 is greater or equal
-            # nums1[write_index] = val1
-            # i--
-            # write_index --
-
-    # return nums1
 
 
 solution = Solution()
