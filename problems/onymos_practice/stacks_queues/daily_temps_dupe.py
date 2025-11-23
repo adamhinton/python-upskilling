@@ -10,10 +10,28 @@
 # If there is no future day for which this is possible, keep answer[i] == 0 instead.
 
 from typing import List
+from collections import deque
 
 class Solution:
     def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
         solution = [None for _ in range(len(temperatures))]
+        temp_stack = []
+
+        for i in range(len(temperatures) -1, -1, -1):
+            temp = temperatures[i]
+
+            # Make sure that temp is the smallest value indexed in temp_stack
+            while(temp_stack and temperatures[temp_stack[-1]] <= temp):
+                temp_stack.pop()
+
+            if temp_stack:
+                days_waited = temp_stack[-1] - i # temp_stack holds INDEXES, not temperatures
+                solution[i] = days_waited # building from the back
+
+            else: # temp is the greatest so far
+                solution[i] = 0
+
+            temp_stack.append(i)
 
         return solution
     
