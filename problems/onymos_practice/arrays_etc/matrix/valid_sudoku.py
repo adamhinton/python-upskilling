@@ -1,5 +1,6 @@
 # 36. Valid Sudoku
 # Medium
+# Review later
 # https://leetcode.com/problems/valid-sudoku/description/
 
 # Determine if a 9 x 9 Sudoku board is valid. 
