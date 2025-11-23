@@ -20,6 +20,26 @@ class Solution:
         Do not return anything, modify nums1 in-place instead.
         """
 
+        i, j = m-1, n - 1
+        write_index = m + n - 1 # end of nums1
+
+        while j>= 0:
+            val_1 = nums1[i]
+            val_2 = nums2[j]
+
+            if i>=0 and val_1 > val_2:
+                nums1[write_index] = val_1
+                i -= 1
+
+            else: # val2 is greater or equal    
+                nums1[write_index] = val_2
+                j -= 1
+
+            write_index -= 1
+        
+        return nums1
+            
+
     # i, j = m - 1, n - 1
     # write_index = m + n - 1
 
@@ -37,8 +57,8 @@ class Solution:
             # i--
             # write_index --
 
-    # return nums2
+    # return nums1
 
 
 solution = Solution()
-print(solution.merge([1,2,3,0,0,0], 3, [2, 5, 6], 3))
+print(solution.merge([1,2,3,0,0,0], 3, [2, 5, 6], 3)) # [1, 2, 2, 3, 5, 6]
