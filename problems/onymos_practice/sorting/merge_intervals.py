@@ -11,7 +11,7 @@ class Solution:
         if len(intervals) == 1: return intervals
         solution = []
 
-        intervals.sort(lambda x: x[0])
+        intervals.sort(key=lambda x: x[0])
 
         return solution
     
