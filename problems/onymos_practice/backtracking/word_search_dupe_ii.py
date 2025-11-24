@@ -22,6 +22,55 @@ class Solution:
         
         return False
 
+# PLAN:
+# Time: O(m * n * len(word)) - pretty nasty
+# Space: O(n)
+    # Could maybe make this O(1) by modifying board in place to denote that a square has been seen
+    # like change it to "-1"
+    # Then change back as we move up recursion tree
+    # But that's overly complicated for a grid of less than 36 squares total
+
+# Need:
+    # Backtracking
+    # Recursion
+    # Hash sets of coords
+
+
+# dirs = whatever
+# m, n = len(board), len(board[0])
+# first_letter = word[0]
+
+# path = Set of (int, int) tuples 
+    # Prevents dupes
+    # Contains coordinates seen in current recursion tree
+    # Remove coordinates as we move back up tree
+
+# for row in range(m):
+    # for col in range(n):
+        # val = board[row][col]
+        # if val == word[0]:
+            # if recursive_helper(row, col, 0) return True
+
+# def recursive_helper(row, col, index_needed):
+    # if index_needed == len(word) -1:
+        # return True
+
+    # nonlocal path
+    # path.add((row, col))
+
+    # next_needed_letter = word[index_needed + 1]
+
+    # for each orthogonal square, call recursive_helper(row, col, index_needed + 1) on it if:
+        # square exists
+        # square coords not in path
+        # val == next_needed_letter
+
+        # return True if any of these return True
+
+
+        
+
+
 
 
 solution = Solution()
