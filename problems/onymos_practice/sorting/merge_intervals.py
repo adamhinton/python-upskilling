@@ -11,6 +11,8 @@ class Solution:
         if len(intervals) == 1: return intervals
         solution = []
 
+        intervals.sort(lambda x: x[0])
+
         return solution
     
 # PLAN
@@ -36,3 +38,8 @@ class Solution:
         # solution.append(start, end)
 
 # return solution
+
+solution = Solution()
+print(solution.merge([[1,3],[2,6],[8,10],[15,18]])) # [[1,6],[8,10],[15,18]]
+print(solution.merge([[1,4],[4,5]])) # [[1,5]]
+print(solution.merge([[4,7],[1,4]])) # [[1,7]]
