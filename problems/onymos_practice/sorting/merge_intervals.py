@@ -11,3 +11,10 @@ class Solution:
         solution = []
 
         return solution
+    
+# PLAN
+# Time: O(n log n)
+# Space: O(n)
+# Need:
+    # Sorting
+    # That's it, I think
