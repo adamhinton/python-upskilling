@@ -12,6 +12,16 @@ class Solution:
         solution = []
 
         intervals.sort(key=lambda x: x[0])
+        solution.append(intervals[0])
+
+        for start, end in intervals[1:]:
+            last_end = solution[-1][1]
+
+            if start <= last_end:
+                solution[-1][1] = max(last_end, end)
+
+            else:
+                solution.append([start, end])
 
         return solution
     
