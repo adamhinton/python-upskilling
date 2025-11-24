@@ -8,6 +8,7 @@ from typing import List, Tuple
 
 class Solution:
     def merge(self, intervals: List[Tuple[int, int]]) -> List[Tuple[int, int]]:
+        if len(intervals) == 1: return intervals
         solution = []
 
         return solution
@@ -18,3 +19,20 @@ class Solution:
 # Need:
     # Sorting
     # That's it, I think
+
+# solution = []
+# if solution is length 1, return intervals
+
+# intervals.sort(by intvl[0])
+
+# add intervals[0] to solution
+
+# for start, end in intervals[1:]:  
+    # last_end = intervals[-1][1]
+    # if start <= last_end:
+        # intervals[-1][1] = max(end, last_end)
+        # 
+    # else:
+        # solution.append(start, end)
+
+# return solution
