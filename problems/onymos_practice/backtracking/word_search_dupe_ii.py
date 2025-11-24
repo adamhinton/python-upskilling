@@ -15,11 +15,45 @@
 # 1 <= m, n <= 6
 # 1 <= word.length <= 15
 
-from typing import List
+from typing import List, Set, Tuple
 
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
-        
+        DIRS = [(-1,0), (0,1), (1,0), (0,-1)]
+        m, n = len(board), len(board[0])
+
+        first_letter = word[0]
+        path: Set[Tuple[int, int]] = set()
+
+        def recursive_helper(row:int, col:int, index_needed) -> bool:
+            if index_needed == len(word)-1: return True
+            nonlocal path
+            coords = (row, col)
+            
+            path.add(coords)
+
+            next_needed_letter= word[index_needed + 1]
+            
+            for a, b in DIRS:
+                x, y = row + a, col + b
+                
+                if ((0 <= x < m and 0 <= y < n ) 
+                    and (board[x][y] == next_needed_letter)
+                    and ((x, y) not in path)
+                    ):
+                    if recursive_helper(x, y, index_needed + 1): return True
+
+            path.remove(coords)
+            
+
+
+
+        for row in range(m):
+            for col in range(n):
+                val = board[row][col]
+                if val == first_letter:
+                    if recursive_helper(row, col, index_needed=0): return True
+
         return False
 
 # PLAN:
@@ -66,6 +100,8 @@ class Solution:
         # val == next_needed_letter
 
         # return True if any of these return True
+
+    # path.remove(coords)
 
 
         
