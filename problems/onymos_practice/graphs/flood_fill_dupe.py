@@ -16,6 +16,26 @@ from typing import List
 
 class Solution:
     def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
+
+        original_color = image[sr][sc]
+        if original_color == color: return image
+
+        DIRS = [(-1,0), (0,1), (1,0), (0,-1)]
+
+        m, n = len(image), len(image[0])
+
+        def recursive_helper(i, j):
+            image[i][j] = color # this only gets called if the val is the color we need to change
+
+            for a, b in DIRS:
+                x, y = i + a, j + b
+                if 0 <= x < m and 0 <= y < n and (image[x][y] == original_color):
+                     recursive_helper(x, y)
+
+        recursive_helper(sr, sc)
+
+        return image
+        
         
 
 # PLAN
@@ -26,11 +46,9 @@ class Solution:
 # m, n = len(image), len(image[0])
 
 # def recursive_helper(row, col):
-    # val = image[row][col]
-    # if val == original_color:
-        # image[row][col] = color
+    # image[row][col] = color >> this only gets called if it has the original color, so this is safe to changes
 
-    # for existing coords in adjacent squares:
+    # for coords in adjacent squares:
         # recursive_helper on coords if:
             # val == original color
             # square exists
@@ -41,5 +59,7 @@ class Solution:
         # if val == original_color:
             # recursive_helper(row, col)
 
+# return image
+
 solution = Solution()
-print(solution.floodFill([[1,1,1],[1,1,0],[1,0,1]], 1, 1, 2))
+print(solution.floodFill([[1,1,1],[1,1,0],[1,0,1]], 1, 1, 2))  #  [[2,2,2],[2,2,0],[2,0,1]]
