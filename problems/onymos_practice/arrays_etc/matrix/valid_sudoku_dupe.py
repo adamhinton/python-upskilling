@@ -14,8 +14,8 @@
 # A Sudoku board (partially filled) could be valid but is not necessarily solvable.
 # Only the filled cells need to be validated according to the mentioned rules.
 
-from collections import List
-from typing import Tuple, DefaultDict, Set
+from collections import defaultdict
+from typing import Tuple, DefaultDict, Set, List
 
 # Doing this horror show more for comedy than anything
 # I miss TypeScript
@@ -24,8 +24,43 @@ Board = Tuple[
     Row, Row, Row, Row, Row, Row, Row, Row, Row
 ]
 
+
+def print_board(board: Board) -> None:
+    print("\n+-------+-------+-------+")
+    for r in range(9):
+        row = []
+        for c in range(9):
+            row.append(board[r][c])
+        print("| " + " ".join(row[0:3]) + " | " + " ".join(row[3:6]) + " | " + " ".join(row[6:9]) + " |")
+        if r % 3 == 2:
+            print("+-------+-------+-------+")
+
+
 class Solution:
     def isValidSudoku(self, board: Board) -> bool:
+        print_board(board)
+
+        row_tracker: DefaultDict[int, Set[str]] = defaultdict(set)
+        col_tracker: DefaultDict[int, Set[str]] = defaultdict(set)
+        subsquare_tracker: DefaultDict[Tuple[int, int], Set[str]] = defaultdict(set)
+
+        for row in range(9):
+            for col in range(9):
+
+                val = board[row][col]
+                if val == "." : continue # empty cell
+
+                subsquare_coords = (row//3, col//3)
+
+                if (
+                    val in row_tracker[row]
+                    or val in col_tracker[col]
+                    or val in subsquare_tracker[subsquare_coords]
+                ): return False
+
+                row_tracker[row].add(val)
+                col_tracker[col].add(val)
+                subsquare_tracker[subsquare_coords].add(val)
 
         return True
     
@@ -65,22 +100,24 @@ class Solution:
     # All inputs will be valid; no integers instead of strings etc
 
 solution = Solution()
-print(solution.isValidSudoku([["5","3",".",".","7",".",".",".","."]
-,["6",".",".","1","9","5",".",".","."]
-,[".","9","8",".",".",".",".","6","."]
-,["8",".",".",".","6",".",".",".","3"]
-,["4",".",".","8",".","3",".",".","1"]
-,["7",".",".",".","2",".",".",".","6"]
-,[".","6",".",".",".",".","2","8","."]
-,[".",".",".","4","1","9",".",".","5"]
-,[".",".",".",".","8",".",".","7","9"]])) # True
+# print(solution.isValidSudoku([["5","3",".",".","7",".",".",".","."]
+# ,["6",".",".","1","9","5",".",".","."]
+# ,[".","9","8",".",".",".",".","6","."]
+# ,["8",".",".",".","6",".",".",".","3"]
+# ,["4",".",".","8",".","3",".",".","1"]
+# ,["7",".",".",".","2",".",".",".","6"]
+# ,[".","6",".",".",".",".","2","8","."]
+# ,[".",".",".","4","1","9",".",".","5"]
+# ,[".",".",".",".","8",".",".","7","9"]])) # True
 
-print(solution.isValidSudoku([["8","3",".",".","7",".",".",".","."]
-,["6",".",".","1","9","5",".",".","."]
-,[".","9","8",".",".",".",".","6","."]
-,["8",".",".",".","6",".",".",".","3"]
-,["4",".",".","8",".","3",".",".","1"]
-,["7",".",".",".","2",".",".",".","6"]
-,[".","6",".",".",".",".","2","8","."]
-,[".",".",".","4","1","9",".",".","5"]
-,[".",".",".",".","8",".",".","7","9"]])) # False
+# print(solution.isValidSudoku([["8","3",".",".","7",".",".",".","."]
+# ,["6",".",".","1","9","5",".",".","."]
+# ,[".","9","8",".",".",".",".","6","."]
+# ,["8",".",".",".","6",".",".",".","3"]
+# ,["4",".",".","8",".","3",".",".","1"]
+# ,["7",".",".",".","2",".",".",".","6"]
+# ,[".","6",".",".",".",".","2","8","."]
+# ,[".",".",".","4","1","9",".",".","5"]
+# ,[".",".",".",".","8",".",".","7","9"]])) # False
+
+print(solution.isValidSudoku([[".",".",".",".","5",".",".","1","."],[".","4",".","3",".",".",".",".","."],[".",".",".",".",".","3",".",".","1"],["8",".",".",".",".",".",".","2","."],[".",".","2",".","7",".",".",".","."],[".","1","5",".",".",".",".",".","."],[".",".",".",".",".","2",".",".","."],[".","2",".","9",".",".",".",".","."],[".",".","4",".",".",".",".",".","."]])) # False
