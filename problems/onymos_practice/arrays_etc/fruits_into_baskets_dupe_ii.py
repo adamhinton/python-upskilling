@@ -44,7 +44,7 @@ class Solution:
                 left += 1
 
 
-            current_max_fruits = sum(counter.values())
+            current_max_fruits = right - left + 1
             max_fruits = max(current_max_fruits, max_fruits)
 
             right += 1
