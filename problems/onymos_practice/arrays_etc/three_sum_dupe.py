@@ -32,24 +32,32 @@ class Solution:
             left, right = idx + 1, len(nums) -1
 
             while (right > left and nums[right] > -1):
+                current_arr = nums[left: right + 1]
                 needed = 0 - num
                 val_left, val_right = nums[left], nums[right]
                 rightplusleft = val_left + val_right
 
                 if rightplusleft == needed:
-                    solution.append([num, left, right])
+                    solution.append([num, val_left, val_right])
                     while nums[right] == val_right:
                         right -= 1
                     while nums[left] == val_left:
                         left += 1
+                    current_arr = nums[left: right + 1]
+                    
 
                 elif rightplusleft > needed: # too positive
                     while nums[right] == val_right:
                         right -= 1
+                    current_arr = nums[left: right + 1]
+
+                    
 
                 else: # too negative
-                    while nums[left] == val_right:
+                    while nums[left] == val_left:
                         left += 1
+                    current_arr = nums[left: right + 1]
+                    
 
         return solution
     
