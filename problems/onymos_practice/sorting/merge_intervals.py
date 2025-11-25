@@ -8,23 +8,21 @@ from typing import List, Tuple
 
 class Solution:
     def merge(self, intervals: List[Tuple[int, int]]) -> List[Tuple[int, int]]:
-        if len(intervals) == 1: return intervals
-        solution = []
-
-        intervals.sort(key=lambda x: x[0])
-        solution.append(intervals[0])
+        intervals.sort(key = lambda x: x[0])
+        solution: List[Tuple[int, int]] = [intervals[0]]
 
         for start, end in intervals[1:]:
             last_end = solution[-1][1]
-
-            if start <= last_end:
+            if start <= last_end: # They overlap
                 solution[-1][1] = max(last_end, end)
-
-            else:
+            
+            else: # No overlap
                 solution.append([start, end])
 
+
         return solution
-    
+
+
 # PLAN
 # Time: O(n log n)
 # Space: O(n)
