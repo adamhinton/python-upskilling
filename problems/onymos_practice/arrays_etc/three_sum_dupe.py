@@ -22,6 +22,35 @@ class Solution:
             return [nums]
         solution = []
 
+        nums.sort()
+
+        for idx in range(len(nums) - 2):
+            num = nums[idx]
+            if idx > 0 and nums[idx - 1] == num: continue # dupe check
+            if num > 0: break
+
+            left, right = idx + 1, len(nums) -1
+
+            while (right > left and nums[right] > -1):
+                needed = 0 - num
+                val_left, val_right = nums[left], nums[right]
+                rightplusleft = val_left + val_right
+
+                if rightplusleft == needed:
+                    solution.append([num, left, right])
+                    while nums[right] == val_right:
+                        right -= 1
+                    while nums[left] == val_left:
+                        left += 1
+
+                elif rightplusleft > needed: # too positive
+                    while nums[right] == val_right:
+                        right -= 1
+
+                else: # too negative
+                    while nums[left] == val_right:
+                        left += 1
+
         return solution
     
 # PLAN:
