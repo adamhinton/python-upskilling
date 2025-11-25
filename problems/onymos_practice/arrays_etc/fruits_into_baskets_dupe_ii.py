@@ -20,9 +20,36 @@
 # Given the integer array fruits, return the maximum number of fruits you can pick.
 
 from typing import List
+from collections import Counter
 
 class Solution:
     def totalFruit(self, fruits: List[int]) -> int:
+        if len(fruits) <= 2: return len(fruits)
+
+        counter = Counter()
+        max_fruits = 0
+        left = 0
+        right = 1
+        counter[fruits[left]] = 1
+
+        while right < len(fruits):
+            right_val = fruits[right]
+
+            counter[right_val] += 1
+
+            while len(counter) > 2:
+                counter[fruits[left]] -= 1
+                if counter[fruits[left]] == 0:
+                    del counter[fruits[left]]
+                left += 1
+
+            current_max_fruits = counter[fruits[left]] + counter[fruits[right]] if len(counter) == 2 else counter[fruits[left]]
+
+            max_fruits = max(current_max_fruits, max_fruits)
+
+            right += 1
+
+        return max_fruits
         
 
 solution = Solution()
