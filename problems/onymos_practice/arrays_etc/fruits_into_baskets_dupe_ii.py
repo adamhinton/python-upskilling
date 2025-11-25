@@ -33,7 +33,6 @@ class Solution:
         counter[fruits[left]] = 1
 
         while right < len(fruits):
-            current_arry = fruits[left:right +1]
             right_val = fruits[right]
 
             counter[right_val] += 1
@@ -43,7 +42,6 @@ class Solution:
                 if counter[fruits[left]] == 0:
                     del counter[fruits[left]]
                 left += 1
-                current_arry = fruits[left:right +1]
 
 
             current_max_fruits = sum(counter.values())
