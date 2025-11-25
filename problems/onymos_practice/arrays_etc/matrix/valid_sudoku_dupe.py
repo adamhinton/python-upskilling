@@ -28,6 +28,41 @@ class Solution:
     def isValidSudoku(self, board: Board) -> bool:
 
         return True
+    
+# PLAN
+# Time: O(n) one pass
+# Space: O(n) just need sets of coords
+# Time and space would increase linearly if you added more rows/cols
+
+# Make three dicts. 
+    # row_tracker: 
+    #   Key: row_index (0-8)
+    #   val: set of strings contained in row
+
+    # col_tracker: 
+    #   Key: col_index (0-8)
+    #   val: set of strings contained in col
+
+    # subsquare_tracker:
+        # key: (row//3, col//3) 
+        #   each coord will be 0, 1 or 2
+        # val: set of strings contained in subsquare
+
+    
+    # for row, col etc:
+        # if val is "." continue
+        # if val in row_tracker[row]: return False
+        # if val in col_tracker[col]: return False
+        # if val in subsquare_tracker[(row//3, col//3)]: return False
+
+        # add val to row tracker, col tracker and subsquare tracker
+
+# return True
+
+
+
+# Constraints:
+    # All inputs will be valid; no integers instead of strings etc
 
 solution = Solution()
 print(solution.isValidSudoku([["5","3",".",".","7",".",".",".","."]
