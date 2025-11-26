@@ -18,8 +18,6 @@ from typing import List
 
 class Solution:
     def threeSum(self, nums:  List[int]) -> List[List[int]]:
-        if len(nums) == 3:
-            return [nums]
         solution = []
 
         nums.sort()
@@ -32,31 +30,27 @@ class Solution:
             left, right = idx + 1, len(nums) -1
 
             while (right > left and nums[right] > -1):
-                current_arr = nums[left: right + 1]
                 needed = 0 - num
                 val_left, val_right = nums[left], nums[right]
                 rightplusleft = val_left + val_right
 
                 if rightplusleft == needed:
                     solution.append([num, val_left, val_right])
-                    while nums[right] == val_right:
+                    while nums[right] == val_right and right > left:
                         right -= 1
-                    while nums[left] == val_left:
+                    while nums[left] == val_left and left < right:
                         left += 1
-                    current_arr = nums[left: right + 1]
                     
 
                 elif rightplusleft > needed: # too positive
-                    while nums[right] == val_right:
+                    while nums[right] == val_right and right > left:
                         right -= 1
-                    current_arr = nums[left: right + 1]
 
                     
 
                 else: # too negative
-                    while nums[left] == val_left:
+                    while nums[left] == val_left and left < right:
                         left += 1
-                    current_arr = nums[left: right + 1]
                     
 
         return solution
@@ -90,7 +84,7 @@ class Solution:
 
 solution = Solution()
 print(solution.threeSum([-1,0,1,2,-1,-4]))
-# [[-1,-1,2],[-1,0,1]]
+[[-1,-1,2],[-1,0,1]]
 print(solution.threeSum([0,1,1]))
 # []
 print(solution.threeSum([0,0,0]))
