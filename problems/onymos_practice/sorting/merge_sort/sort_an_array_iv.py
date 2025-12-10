@@ -4,7 +4,50 @@ from typing import List
 
 class Solution:
     def sortArray(self, nums: List[int]) -> List[int]:
+        
+        def recursive_helper(nums:List[int]):
+            n = len(nums)
+            if n == 1: return
 
+            nums_left = nums[:n//2]
+            nums_right = nums[n//2:]
+
+            recursive_helper(nums_left)
+            recursive_helper(nums_right)
+            
+            i = 0 # index in nums_left
+            j = 0 # index in nums_right
+            k = 0 # index in master nums
+
+            while i < len(nums_left) and j < len(nums_right):
+
+                left_num = nums_left[i]
+                right_num = nums_right[j]
+
+                if left_num <= right_num: # left is less or equal
+                    nums[k] = left_num
+                    i += 1
+
+                else: # right is strictly greater
+                    nums[k] = right_num
+                    j += 1
+                
+                k += 1
+
+
+            while i < len(nums_left):
+                nums[k] = nums_left[i]
+                i += 1
+                k += 1
+
+            while j < len(nums_right):
+                nums[k] = nums_right[j]
+                j += 1
+                k += 1
+
+
+
+        recursive_helper(nums)
         return nums
 
 
