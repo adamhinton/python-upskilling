@@ -14,6 +14,7 @@ class Solution:
 
             recursive_helper(nums_left)
             recursive_helper(nums_right)
+            # Now both arrays are sorted
             
             i = 0 # index in nums_left
             j = 0 # index in nums_right
