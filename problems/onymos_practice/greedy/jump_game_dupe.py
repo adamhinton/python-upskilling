@@ -19,10 +19,16 @@ from typing import List
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
 
-        
+        current = len(nums) - 1
 
-        return False
-    
+        for i in range(len(nums) -1, -1, -1):
+            num = nums[i]
+            needed_jump = current - i
+
+            if num >= needed_jump:
+                current = i
+        
+        return current == 0 # made it to the front    
 
 
 solution = Solution()
@@ -35,7 +41,7 @@ print(solution.canJump([3,2,1,0,4])) # False
 
 # Loop backwards over the array
 # Track a `current` variable
-# If the current num can reach `current`, current = num
+# If the current num can reach `current`, current = i
 # After loop, return current == 0
 
 # current = len(nums) - 1
