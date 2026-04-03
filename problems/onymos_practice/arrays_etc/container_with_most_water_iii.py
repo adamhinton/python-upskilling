@@ -18,6 +18,18 @@ class Solution:
     def maxArea(self, height: List[int]) -> int:
         max_area = 0
 
+        left, right = 0, len(height) -1
+
+        while left < right:
+            left_height, right_height = height[left], height[right] 
+
+            current_area = (min(left_height, right_height) * (right - left)) # height * width
+
+            max_area = max(current_area, max_area)
+
+            if(left_height < right_height): left += 1 # can make this more efficient?
+            else: right -= 1
+
         return max_area
     
 # PLAN:
@@ -31,7 +43,7 @@ class Solution:
 # left, right = 0, len(height) -1
 
 # while left is less than right:
-    # calculate current area - min(left_height, right_height) * (right - left - 1)
+    # calculate current area : min(left_height, right_height) * (right - left - 1)
     # max_area = max(current_area, max_area)
     # If left_height < right_height left++; else right--
 
