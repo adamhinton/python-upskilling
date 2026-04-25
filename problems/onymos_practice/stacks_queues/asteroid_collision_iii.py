@@ -1,0 +1,54 @@
+
+# 735. Asteroid Collision
+# https://leetcode.com/problems/asteroid-collision/description/
+
+# We are given an array asteroids of integers representing asteroids in a row. 
+# The indices of the asteroid in the array represent their relative position in space.
+
+# For each asteroid, the absolute value represents its size, 
+# and the sign represents its direction (positive meaning right, negative meaning left).
+#  Each asteroid moves at the same speed.
+
+# Find out the state of the asteroids after all collisions. 
+# If two asteroids meet, the smaller one will explode. 
+# If both are the same size, both will explode. 
+# Two asteroids moving in the same direction will never meet.
+
+from typing import List
+
+class Solution:
+    def asteroidCollision(self, asteroids: List[int]) -> List[int]:
+        def is_same_direction(ast1: int, ast2: int) -> bool:
+            return (ast1 > 0 and ast2 > 0) or (ast1 < 0 and ast2 < 0)
+
+        solution = [] # stack
+
+        for ast in asteroids:
+
+            # top astroid in stack is solution[-1]
+            if not solution or ast > 0 or ((ast < 0 and solution[-1] < 0)):
+                solution.append(ast)
+                continue
+
+            while solution and solution[-1] > 0:
+                if abs(ast) > abs(solution[-1]):
+                    solution.pop() # # top of stack explodes, move on to next asteroid in stack
+                    if not solution or ast > 0 or ((ast < 0 and solution[-1] < 0)):
+                        solution.append(ast)
+
+                elif abs(ast) < abs(solution[-1]):
+                    break # ast explodes
+
+                else: # the're equal
+                    solution.pop()
+                    break # they both explode
+
+        return solution
+
+
+solution = Solution()
+print(solution.asteroidCollision([5,10,-5])) # [5, 10]
+print(solution.asteroidCollision([8,-8])) # []
+print(solution.asteroidCollision([10,2,-5])) # [10]
+print(solution.asteroidCollision([3,5,-6,2,-1,4])) # [-6, 2, 4]
+print(solution.asteroidCollision([-2,-2,1,-2])) # [-2, -2, -2]
